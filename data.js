@@ -1,0 +1,86 @@
+import {Icon} from './src/assets';
+
+const data = [
+  {
+    id: '1',
+    cryptoShortName: 'BTC',
+    cryptoName: 'Bitcoin',
+    cryptoIcon: Icon.bitcoin,
+    price: '65,000',
+    priceChange: '-3.45',
+  },
+  {
+    id: '2',
+    cryptoShortName: 'ETH',
+    cryptoName: 'Ethereum',
+    cryptoIcon: Icon.ethereum,
+    price: '4,500',
+    priceChange: '+1.20',
+  },
+  {
+    id: '3',
+    cryptoShortName: 'XRP',
+    cryptoName: 'Ripple',
+    cryptoIcon: Icon.ripple,
+    price: '1.25',
+    priceChange: '-0.75',
+  },
+  {
+    id: '4',
+    cryptoShortName: 'LTC',
+    cryptoName: 'Litecoin',
+    cryptoIcon: Icon.litecoin,
+    price: '180',
+    priceChange: '+5.50',
+  },
+  {
+    id: '5',
+    cryptoShortName: 'ADA',
+    cryptoName: 'Cardano',
+    cryptoIcon: Icon.cardano,
+    price: '2.45',
+    priceChange: '-2.30',
+  },
+  {
+    id: '6',
+    cryptoShortName: 'DOGE',
+    cryptoName: 'Dogecoin',
+    cryptoIcon: Icon.dogecoin,
+    price: '0.35',
+    priceChange: '+10.00',
+  },
+  {
+    id: '7',
+    cryptoShortName: 'SOL',
+    cryptoName: 'Solana',
+    cryptoIcon: Icon.solana,
+    price: '150',
+    priceChange: '-1.75',
+  },
+  {
+    id: '8',
+    cryptoShortName: 'DOT',
+    cryptoName: 'Polkadot',
+    cryptoIcon: Icon.polkadot,
+    price: '30',
+    priceChange: '+3.65',
+  },
+  {
+    id: '9',
+    cryptoShortName: 'BNB',
+    cryptoName: 'Binance',
+    cryptoIcon: Icon.binance,
+    price: '400',
+    priceChange: '-4.50',
+  },
+  {
+    id: '10',
+    cryptoShortName: 'MATIC',
+    cryptoName: 'Polygon',
+    cryptoIcon: Icon.polygon,
+    price: '1.80',
+    priceChange: '+7.00',
+  },
+];
+
+export default data;

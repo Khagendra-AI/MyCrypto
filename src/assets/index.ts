@@ -1,0 +1,35 @@
+const Icon={
+  bitcoin:require('./icons/bitcoin.png'),
+  gift:require('./icons/gift.png'),
+  searchw:require('./icons/searchw.png'),
+  profileww:require('./icons/profileww.png'),
+  solana:require('./icons/solana.png'),
+  binance:require('./icons/binance.png'),
+  cardano:require('./icons/cardano.png'),
+  dogecoin:require('./icons/dogecoin.png'),
+  litecoin:require('./icons/litecoin.png'),
+  ripple:require('./icons/ripple.png'),
+  polygon:require('./icons/polygon.png'),
+  ethereum:require('./icons/ethereum.png'),
+  polkadot:require('./icons/polkadot.png'),
+  swiggy:require('./icons/swiggy.gif'),
+  home:require('./icons/home.png'),
+  market:require('./icons/market.png'),
+  portfolio:require('./icons/portfolio.png'),
+  shiba:require('./icons/shiba.png'),
+  arpa:require('./icons/arpa.png'),
+  bounce:require('./icons/bounce.png'),
+  bcut:require('./icons/bcut.png'),
+  amp:require('./icons/amp.png'),
+  forward:require('./icons/forward.png'),
+}
+const Images={
+  cryptoanimation:require('./images/cryptoanimation.gif'),
+  Cryptobanner:require('./images/Cryptobanner.jpg'),
+  slidingBanner2:require('./images/slidingBanner2.jpg'),
+  slidingBanner1:require('./images/slidingBanner1.jpg'),
+  slidingBanner3:require('./images/slidingBanner3.jpg'),
+  slidingBanner4:require('./images/slidingBanner4.jpg'),
+  
+}
+export {Icon,Images}
