@@ -13,15 +13,20 @@ import Market from './src/screens/Market';
 import {SearchSource} from 'jest';
 import Search from './src/screens/Search';
 import RootNavigation from './src/navigator';
+
 import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
+import MainCrypto from './src/screens/MainCrypto';
+import AddMoney from './src/components/AddMoney';
 
 const App = () => {
   return (
+    
     <Provider store={store}>
       <RootNavigation />
       {/* <Search /> */}
     </Provider>
+    
   );
 };
 

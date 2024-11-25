@@ -17,7 +17,7 @@ import HorizontalTile from '../../components/HorizontalTile';
 import {useRoute} from '@react-navigation/native';
 
 const Market = ({navigation, route}: {navigation: any,route:any}) => {
-  console.log('route in the ', route);
+  // console.log('route in the ', route);
   const {params} = route;
 
   // console.log(index, '++++++');

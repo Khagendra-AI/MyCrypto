@@ -5,20 +5,39 @@ import data from '../../../data';
 import styles from './styles';
 import {useSelector} from 'react-redux';
 
-const WatchList = ({navigateWatchlist}: {navigateWatchlist: any}) => {
+const WatchList = ({
+  navigateWatchlist,
+  navigateMainCrypto,
+  navigation,
+}: {
+  navigateWatchlist: any;
+  navigateMainCrypto: any;
+  navigation: any;
+}) => {
   const {products} = useSelector(store => store.mainapi);
 
-  console.log('productsproducts', products);
+  // console.log('productsproducts', products);
 
-  const renderItem = ({item}: {item: any}) => (
-    <Tile
-      cryptoShortName={item.symbol}
-      cryptoName={item.name}
-      cryptoIcon={item.cryptoIcon}
-      price={Number(item.priceUsd ?? 0).toFixed(2)}
-      priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
-    />
-  );
+  const renderItem = ({item, index}: {item: any}) => {
+    // console.log('item in the renderItem', item.id);
+    return (
+      <Tile
+        index={index}
+        navigateToCrypto={navigation}
+        screenName={'MainCrypto'}
+        navigateMainCrypto={{
+          ...navigateMainCrypto,
+          tileId: item.id ?? '',
+        }}
+        tileId={item.id ?? ''}
+        cryptoShortName={item.symbol}
+        cryptoName={item.name}
+        cryptoIcon={item.cryptoIcon}
+        price={Number(item.priceUsd ?? 0).toFixed(2)}
+        priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
+      />
+    );
+  };
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>

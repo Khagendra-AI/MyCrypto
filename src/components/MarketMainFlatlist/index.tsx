@@ -30,10 +30,10 @@ const MarketMainFlatlist = ({index}: {index: any}) => {
   const nsortedGainers = negativeGainers.sort(
     (a: any, b: any) => a.changePercent24Hr - b.changePercent24Hr,
   );
-  const newlyAdded = newapiData;
+  const newlyAdded :any = newapiData;
 
   const flatListRef: any = useRef(null);
-  console.log(index);
+  // console.log(index);
 
   const [selectedId, setSelectedId] = useState('1');
   const [dataset, setDataSet] = useState(data);
@@ -69,7 +69,7 @@ const MarketMainFlatlist = ({index}: {index: any}) => {
     const isSelected = item.id === selectedId;
     return (
       <View style={styles.item}>
-        <TouchableOpacity
+        <TouchableOpacity activeOpacity={1}
           onPress={() => {
             newData(item, index), handlePress(item.id);
           }}>

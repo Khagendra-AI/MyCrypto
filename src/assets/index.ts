@@ -22,6 +22,7 @@ const Icon={
   bcut:require('./icons/bcut.png'),
   amp:require('./icons/amp.png'),
   forward:require('./icons/forward.png'),
+  backw:require('./icons/backw.png'),
 }
 const Images={
   cryptoanimation:require('./images/cryptoanimation.gif'),

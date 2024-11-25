@@ -1,4 +1,5 @@
 import {
+  Alert,
   Dimensions,
   Image,
   StyleSheet,
@@ -10,21 +11,40 @@ import React from 'react';
 import styles from './styles';
 
 const Tile = ({
+  navigateMainCrypto,
   cryptoShortName,
   cryptoName,
   cryptoIcon,
   price,
+  tileId,
   priceChange,
+  screenName,
+  index,
+  navigateToCrypto,
 }: {
+  navigateMainCrypto: any;
   cryptoShortName: any;
   cryptoName: any;
   cryptoIcon: any;
   price: any;
   priceChange: any;
+  screenName: string;
+  index: number;
+  tileId: number | string;
+  navigateToCrypto: () => void;
 }) => {
   return (
     <View style={{backgroundColor: 'black'}}>
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        // onPress={navigateMainCrypto?.onPress}
+        onPress={() =>
+          navigateToCrypto?.navigate?.(screenName, {
+            tileId: tileId ?? '',
+            index: index,
+          })
+        }
+        activeOpacity={1}>
         <View style={styles.cryptoinfoView}>
           <View style={styles.cryptoNameView}>
             <Text style={styles.cryptoShortName}>{cryptoShortName}</Text>

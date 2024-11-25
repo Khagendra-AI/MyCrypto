@@ -1,26 +1,20 @@
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Tile from '../Tile';
-import styles from './styles';
 import data from '../../../data';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import styles from './styles';
 import {useSelector} from 'react-redux';
 
-const Losers = ({
-  navigateLosers,
+const SimilarCrypto = ({
+  navigateWatchlist,
   navigateMainCrypto,
 }: {
-  navigateLosers: any;
+  navigateWatchlist: any;
   navigateMainCrypto: any;
 }) => {
   const {products} = useSelector(store => store.mainapi);
-  const apiData = products?.data;
-  const positiveGainers = apiData?.filter(
-    (item: any) => item.changePercent24Hr < 0,
-  );
 
-  const sortedGainers = positiveGainers?.sort(
-    (a: any, b: any) => a.changePercent24Hr - b.changePercent24Hr,
-  );
+  // console.log('productsproducts', products);
 
   const renderItem = ({item}: {item: any}) => (
     <Tile
@@ -32,28 +26,18 @@ const Losers = ({
       priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
     />
   );
-
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>
         <Text
           style={{color: 'white', fontWeight: '600', margin: 5, fontSize: 19}}>
-          Top Losers
+          Similar Cryptos
         </Text>
-        <TouchableOpacity
-          style={styles.touchableViewall}
-          onPress={() => navigateLosers(2)}>
-          <Text
-            style={{color: 'blue', fontWeight: '600', margin: 5, fontSize: 14}}>
-            View all
-          </Text>
-        </TouchableOpacity>
       </View>
       <FlatList
         horizontal
-        
         bounces={false}
-        data={sortedGainers}
+        data={products?.data}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
@@ -61,4 +45,4 @@ const Losers = ({
   );
 };
 
-export default Losers;
+export default SimilarCrypto;

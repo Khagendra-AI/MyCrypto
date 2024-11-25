@@ -12,12 +12,26 @@ import SlidingBanner from '../../components/SlidingBanner';
 import CurrentValueTile from '../../components/CurrentValueTile';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductsAction} from '../../redux/config/configAction';
+import {addGainers} from '../../redux/config/configSlice';
 
 const Home = ({navigation}: {navigation: any}) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
-    dispatch(getProductsAction());
+    dispatch(getProductsAction())
+      .unwrap()
+      .then((res: any) => {
+        console.log('res on the homescreen', res?.data);
+        const positiveGainers = res?.data?.filter(
+          (item: any) => item.changePercent24Hr > 0,
+        );
+        const sortedGainers = res?.data?.sort(
+          (a: any, b: any) => b?.changePercent24Hr - a?.changePercent24Hr,
+        );
+        dispatch(addGainers([{}]));
+      })
+      .catch();
+    // dispatch(addGainers(sortedGainers))
   }, []);
 
   const navigateSearch = () => {
@@ -30,17 +44,57 @@ const Home = ({navigation}: {navigation: any}) => {
   const navigatePortfolio = () => {
     navigation.navigate('Portfolio');
   };
+  const navigateMainCrypto = () => {
+    navigation.navigate('MainCrypto', {});
+  };
+  const navigateAddMoney = () => {
+    navigation.navigate('AddMoney');
+  };
+
+  // const dispatch=useDispatch()
+  const {products} = useSelector(store => store.mainapi);
+  const apiData = products?.data;
+
+  // console.log('apiDataapiData', apiData);
+
+  const positiveGainers = apiData?.filter(
+    (item: any) => item.changePercent24Hr > 0,
+  );
+  const sortedGainers = positiveGainers?.sort(
+    (a: any, b: any) => b?.changePercent24Hr - a?.changePercent24Hr,
+  );
+
+  console.log('sortedGainers', positiveGainers);
+
+  // useEffect(() => {
+  //   dispatch(addGainers(positiveGainers));
+  // }, []);
 
   return (
     <ScrollView style={styles.container} bounces={false}>
       <Header navigateSearch={navigateSearch} />
-      <CurrentValueTile navigatePortfolio={navigatePortfolio} />
+      <CurrentValueTile
+        navigatePortfolio={navigatePortfolio}
+        navigateAddMoney={navigateAddMoney}
+      />
       <Explore />
-      <WatchList navigateWatchlist={navigateWithIndex} />
+      <WatchList
+        navigateWatchlist={navigateWithIndex}
+        navigation={navigation}
+        // navigateMainCrypto={{onPress: navigateMainCrypto, tileId: '', index: 0}}
+      />
       <BannerAnimated />
       <Popular />
-      <Gainers navigateGainers={navigateWithIndex} />
-      <Losers navigateLosers={navigateWithIndex} />
+      <Gainers
+        navigation={navigation}
+        // navigateMainCrypto={{onPress: navigateMainCrypto, tileId: '', index: 0}}
+        navigateGainers={navigateWithIndex}
+        navigateMainCrypto={navigateMainCrypto}
+      />
+      <Losers
+        navigateLosers={navigateWithIndex}
+        navigateMainCrypto={navigateMainCrypto}
+      />
       <SlidingBanner />
     </ScrollView>
   );

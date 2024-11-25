@@ -1,16 +1,26 @@
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import data from '../../../data';
 import Tile from '../Tile';
 import styles from './styles';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {addGainers} from '../../redux/config/configSlice';
 
-const Gainers = ({navigateGainers}: {navigateGainers: any}) => {
+const Gainers = ({
+  navigateGainers,
+  navigateMainCrypto,
+  navigation,
+}: {
+  navigation: any;
+  navigateGainers: any;
+  navigateMainCrypto: any;
+}) => {
+  const dispatch = useDispatch();
   const {products} = useSelector(store => store.mainapi);
   const apiData = products?.data;
 
-  console.log('apiDataapiData', apiData);
+  // console.log('apiDataapiData', apiData);
 
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr > 0,
@@ -18,8 +28,21 @@ const Gainers = ({navigateGainers}: {navigateGainers: any}) => {
   const sortedGainers = positiveGainers?.sort(
     (a: any, b: any) => b?.changePercent24Hr - a?.changePercent24Hr,
   );
-  const renderItem = ({item}: {item: any}) => (
+  // useEffect(() => {
+  //  dispatch(addGainers(sortedGainers))
+  // }, []);
+
+  const renderItem = ({item, index}: {item: any; index: any}) => (
     <Tile
+      index={index}
+      navigateToCrypto={navigation}
+      screenName={'MainCrypto'}
+      navigateMainCrypto={{
+        ...navigateMainCrypto,
+        tileId: item.id ?? '',
+      }}
+      tileId={item.id ?? ''}
+      // navigateMainCrypto={navigateMainCrypto}
       cryptoShortName={item.symbol}
       cryptoName={item.name}
       cryptoIcon={item.cryptoIcon}

@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './styles'
 import { Icon } from '../../assets'
 
-const CurrentValueTile = ({navigatePortfolio}) => {
+const CurrentValueTile = ({navigatePortfolio,navigateAddMoney}:{navigatePortfolio:any,navigateAddMoney:any}) => {
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>
@@ -33,7 +33,7 @@ const CurrentValueTile = ({navigatePortfolio}) => {
         />
         <Text style={styles.buyText}>Buy BTC</Text>
         </TouchableOpacity>
-      <TouchableOpacity style={styles.touchableAdd}>
+      <TouchableOpacity style={styles.touchableAdd} onPress={navigateAddMoney}>
         <Text style={styles.addText}>Add Money</Text>
         </TouchableOpacity>
       </View>
