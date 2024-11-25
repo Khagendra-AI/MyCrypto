@@ -42,6 +42,7 @@ const Gainers = ({
         tileId: item.id ?? '',
       }}
       tileId={item.id ?? ''}
+      item={item}
       // navigateMainCrypto={navigateMainCrypto}
       cryptoShortName={item.symbol}
       cryptoName={item.name}

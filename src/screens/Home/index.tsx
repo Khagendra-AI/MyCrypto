@@ -12,7 +12,7 @@ import SlidingBanner from '../../components/SlidingBanner';
 import CurrentValueTile from '../../components/CurrentValueTile';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductsAction} from '../../redux/config/configAction';
-import {addGainers} from '../../redux/config/configSlice';
+
 
 const Home = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
@@ -21,17 +21,8 @@ const Home = ({navigation}: {navigation: any}) => {
     dispatch(getProductsAction())
       .unwrap()
       .then((res: any) => {
-        console.log('res on the homescreen', res?.data);
-        const positiveGainers = res?.data?.filter(
-          (item: any) => item.changePercent24Hr > 0,
-        );
-        const sortedGainers = res?.data?.sort(
-          (a: any, b: any) => b?.changePercent24Hr - a?.changePercent24Hr,
-        );
-        dispatch(addGainers([{}]));
       })
       .catch();
-    // dispatch(addGainers(sortedGainers))
   }, []);
 
   const navigateSearch = () => {
@@ -50,26 +41,6 @@ const Home = ({navigation}: {navigation: any}) => {
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
-
-  // const dispatch=useDispatch()
-  const {products} = useSelector(store => store.mainapi);
-  const apiData = products?.data;
-
-  // console.log('apiDataapiData', apiData);
-
-  const positiveGainers = apiData?.filter(
-    (item: any) => item.changePercent24Hr > 0,
-  );
-  const sortedGainers = positiveGainers?.sort(
-    (a: any, b: any) => b?.changePercent24Hr - a?.changePercent24Hr,
-  );
-
-  console.log('sortedGainers', positiveGainers);
-
-  // useEffect(() => {
-  //   dispatch(addGainers(positiveGainers));
-  // }, []);
-
   return (
     <ScrollView style={styles.container} bounces={false}>
       <Header navigateSearch={navigateSearch} />
@@ -81,6 +52,7 @@ const Home = ({navigation}: {navigation: any}) => {
       <WatchList
         navigateWatchlist={navigateWithIndex}
         navigation={navigation}
+        navigateMainCrypto={navigateMainCrypto}
         // navigateMainCrypto={{onPress: navigateMainCrypto, tileId: '', index: 0}}
       />
       <BannerAnimated />
@@ -92,6 +64,7 @@ const Home = ({navigation}: {navigation: any}) => {
         navigateMainCrypto={navigateMainCrypto}
       />
       <Losers
+      navigation={navigation}
         navigateLosers={navigateWithIndex}
         navigateMainCrypto={navigateMainCrypto}
       />

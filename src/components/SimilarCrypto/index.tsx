@@ -8,22 +8,32 @@ import {useSelector} from 'react-redux';
 const SimilarCrypto = ({
   navigateWatchlist,
   navigateMainCrypto,
+  navigation,
 }: {
   navigateWatchlist: any;
   navigateMainCrypto: any;
+  navigation:any;
 }) => {
   const {products} = useSelector(store => store.mainapi);
 
-  // console.log('productsproducts', products);
+ 
 
   const renderItem = ({item}: {item: any}) => (
     <Tile
-      navigateMainCrypto={navigateMainCrypto}
-      cryptoShortName={item.symbol}
-      cryptoName={item.name}
-      cryptoIcon={item.cryptoIcon}
-      price={Number(item.priceUsd ?? 0).toFixed(2)}
-      priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
+    navigateToCrypto={navigation}
+    screenName={'MainCrypto'}
+    navigateMainCrypto={{
+      ...navigateMainCrypto,
+      tileId: item.id ?? '',
+    }}
+    tileId={item.id ?? ''}
+    item={item}
+    // navigateMainCrypto={navigateMainCrypto}
+    cryptoShortName={item.symbol}
+    cryptoName={item.name}
+    cryptoIcon={item.cryptoIcon}
+    price={Number(item.priceUsd ?? 0).toFixed(2)}
+    priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
     />
   );
   return (

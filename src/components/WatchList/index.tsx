@@ -29,6 +29,7 @@ const WatchList = ({
           ...navigateMainCrypto,
           tileId: item.id ?? '',
         }}
+        item={item}
         tileId={item.id ?? ''}
         cryptoShortName={item.symbol}
         cryptoName={item.name}

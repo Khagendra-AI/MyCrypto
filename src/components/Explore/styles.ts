@@ -53,5 +53,11 @@ const styles = StyleSheet.create({
     marginVertical:4,
     color : '#D0D0D0',
   },
+  images:{
+    borderRadius:10,
+    backgroundColor:'black',
+    height:60,
+    width:60,
+  },
 });
 export default styles

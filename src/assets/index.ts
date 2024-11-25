@@ -23,6 +23,10 @@ const Icon={
   amp:require('./icons/amp.png'),
   forward:require('./icons/forward.png'),
   backw:require('./icons/backw.png'),
+  learn:require('./icons/learn.gif'),
+  stock:require('./icons/stock.gif'),
+  deposit:require('./icons/deposit.gif'),
+  earn:require('./icons/earn.gif'),
 }
 const Images={
   cryptoanimation:require('./images/cryptoanimation.gif'),
