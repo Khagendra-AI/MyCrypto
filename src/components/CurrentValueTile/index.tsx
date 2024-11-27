@@ -10,8 +10,10 @@ const CurrentValueTile = ({navigatePortfolio,navigateAddMoney}:{navigatePortfoli
       <View style={styles.leftView}>
         <View style={styles.dataView}>
           <Text style={styles.currentText}>Current value</Text>
-          <Text style={styles.priceText}>$2500.81</Text>
-          <Text style={styles.pricechangeText}>-4.63%</Text>
+          <Text style={styles.priceText}>$0</Text>
+          <View style={styles.pricechangeView}>
+          <Text style={styles.pricechangeText}>0%</Text>
+          </View>
         </View>
 
       </View>

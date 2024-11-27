@@ -7,6 +7,8 @@ import Home from '../screens/Home';
 import Search from '../screens/Search';
 import MainCrypto from '../screens/MainCrypto';
 import AddMoney from '../components/AddMoney';
+import BuyPage from '../components/BuyPage';
+import SellPage from '../components/SellPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,8 @@ export default function RootNavigation() {
         <Stack.Screen name="Search" component={Search}  options={{headerShown:false}} />
         <Stack.Screen name="MainCrypto" component={MainCrypto}  options={{headerShown:false}} />
         <Stack.Screen name="AddMoney" component={AddMoney}  options={{headerShown:false}} />
+        <Stack.Screen name="BuyPage" component={BuyPage}  options={{headerShown:false}} />
+        <Stack.Screen name="SellPage" component={SellPage}  options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

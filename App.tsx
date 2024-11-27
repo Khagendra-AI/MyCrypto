@@ -18,14 +18,15 @@ import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
 import MainCrypto from './src/screens/MainCrypto';
 import AddMoney from './src/components/AddMoney';
+import Chart from './src/components/Chart';
 
 const App = () => {
   return (
     
     <Provider store={store}>
       <RootNavigation />
-      {/* <Search /> */}
     </Provider>
+    
     
   );
 };

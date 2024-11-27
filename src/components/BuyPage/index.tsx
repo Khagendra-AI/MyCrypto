@@ -6,44 +6,40 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styles from './styles';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {Icon} from '../../assets';
-import { useDispatch, useSelector } from 'react-redux';
-import { addBalance } from '../../redux/config/configSlice';
+import { useRoute } from '@react-navigation/native';
 
-const AddMoney = ({navigation}:{navigation:any}) => {
-  const[money,setmoney]=useState("")
-  const onmoneychange=(e)=>{
-    setmoney(e)
-  }
-  const onDepositPress=()=>{
-    dispatch(addBalance(money))
-  }
-  const dispatch=useDispatch()
+const BuyPage = ({navigation}: {navigation: any}) => {
+  const params = useRoute()?.params;
+  const [amount, setamount] = useState('');
+  const onamountchange = e => {
+    setamount(e);
+  };
+  const onBuyPress = () => {};
   const on10press = () => {};
   const on50press = () => {};
   const on100press = () => {};
   const on500press = () => {};
-  const {products,gainersData,walletBalance} = useSelector(store => store.mainapi);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={()=> navigation.goBack()}>
-          <Image source={Icon.backw} style={styles.backimage} />
+        <TouchableOpacity onPress={()=>navigation.goBack()}>
+          <Image source={Icon.backw} />
         </TouchableOpacity>
-        <Text style={styles.addText}>Add Money</Text>
+        <View style={styles.infoViewHeader}>
+          <Text style={styles.crypNameText}>Buy {params.item.symbol}</Text>
+          <Text style={styles.cryppriceText}>${parseFloat(params.item?.priceUsd).toFixed(2)}</Text>
+        </View>
         <View></View>
-      </View>
-      <View style={styles.balanceView}>
-        <Text style={styles.balance}>${walletBalance}</Text>
-        <Text style={styles.balanceText}>Current Balance</Text>
       </View>
       <View style={styles.enterAmountView}>
         <Text style={styles.enterAmountText}>Enter Amount</Text>
         <TextInput
-        onChangeText={onmoneychange}
-          value={money}
+          onChangeText={onamountchange}
+          value={amount}
           defaultValue="50"
           placeholderTextColor={'grey'}
           placeholder="10"
@@ -65,11 +61,13 @@ const AddMoney = ({navigation}:{navigation:any}) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.touchableDeposit} onPress={onDepositPress}>
-        <Text style={styles.depositText}>Deposit ${money}</Text>
+      <TouchableOpacity style={styles.touchableDeposit} onPress={onBuyPress}>
+        <Text style={styles.depositText}>
+          Buy {params.item.symbol}
+        </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
-export default AddMoney;
+export default BuyPage;

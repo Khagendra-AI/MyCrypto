@@ -10,22 +10,22 @@ const IndividualCryptoPortfolio = ({cryptoName,shortName}) => {
         <View style={styles.upperView}>
           <View style={styles.leftUpperView}>
             <Text style={styles.headingText}>{shortName} Balance</Text>
-            <Text style={styles.normalText}> 0.30</Text>
+            <Text style={styles.normalText}> 0.0</Text>
           </View>
           <View style={styles.rightUpperView}>
           <Text style={styles.headingText}>Current Value</Text>
-            <Text style={styles.normalText}> $.1</Text>
+            <Text style={styles.normalText}> $0</Text>
             </View>
         </View>
         <View style={styles.horizontalLine}/>
         <View style={styles.lowerView}>
           <View style={styles.leftLowerView}>
           <Text style={styles.headingText}>Average Buy Price</Text>
-          <Text style={styles.normalText}> $.4</Text>
+          <Text style={styles.normalText}> $0</Text>
           </View>
           <View style={styles.rightLowerView}>
           <Text style={styles.headingText}>Gain/Loss</Text>
-          <Text style={styles.normalText}>37.55%</Text>
+          <Text style={styles.normalText}>0%</Text>
           </View>
         </View>
       </View>

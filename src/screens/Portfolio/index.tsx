@@ -40,7 +40,7 @@ const Portfolio = ({navigation}: {navigation: any}) => {
           <Text style={styles.orderText}>Orders</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView>
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
         <PortfolioTile />
         <View style={styles.body}>
           <Text style={styles.cryptosText}>Cryptos</Text>

@@ -15,7 +15,9 @@ import styles from './styles';
 import {useSelector} from 'react-redux';
 import { newapiData } from '../../../newData';
 
-const MarketMainFlatlist = ({index}: {index: any}) => {
+const MarketMainFlatlist = ({index,navigateMainCrypto,
+  navigation,}: {index: any,navigateMainCrypto:any,
+    navigation:any,}) => {
   const {products} = useSelector(store => store.mainapi);
   const apiData = products?.data;
   const positiveGainers = apiData?.filter(
@@ -83,6 +85,13 @@ const MarketMainFlatlist = ({index}: {index: any}) => {
 
   const renderdataitem = ({item, index}: {item: any; index: number}) => (
     <HorizontalTile
+    navigateToCrypto={navigation}
+    screenName={'MainCrypto'}
+    navigateMainCrypto={{
+      ...navigateMainCrypto,
+      tileId: item.id ?? '',
+    }}
+    item={item}
       cryptoShortName={item.symbol}
       cryptoName={item.name}
       cryptoIcon={item.cryptoIcon}

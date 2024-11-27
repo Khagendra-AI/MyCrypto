@@ -39,21 +39,32 @@ const styles = StyleSheet.create({
     
   },
   currentText:{
+    marginLeft:10,
     color:'grey',
     fontSize:14,
   },
   priceText:{
+    marginLeft:10,
     fontSize:25,
     fontWeight:'700',
   },
+  pricechangeView:{
+    // backgroundColor:'yellow',
+  //  alignItems:'center',
+   width:'22%',
+   
+  },
   pricechangeText:{
+    
+    alignSelf:'center',
     marginTop:15,
     fontSize:15,
     fontWeight:'600',
    padding:5,
+   paddingHorizontal:10,
     backgroundColor:'red',
     // aling:'center',
-    width:'22%',
+    
     borderRadius:10,
     color:'white'
   },

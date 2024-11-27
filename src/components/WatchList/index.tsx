@@ -50,7 +50,7 @@ const WatchList = ({
           style={styles.touchableViewall}
           onPress={() => navigateWatchlist(3)}>
           <Text
-            style={{color: 'blue', fontWeight: '600', margin: 5, fontSize: 14}}>
+            style={{color: '#00FFFF', fontWeight: '600', margin: 5, fontSize: 14}}>
             View all
           </Text>
         </TouchableOpacity>

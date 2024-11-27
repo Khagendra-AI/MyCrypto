@@ -27,6 +27,8 @@ const Icon={
   stock:require('./icons/stock.gif'),
   deposit:require('./icons/deposit.gif'),
   earn:require('./icons/earn.gif'),
+  bell:require('./icons/bell.png'),
+  star:require('./icons/star.png'),
 }
 const Images={
   cryptoanimation:require('./images/cryptoanimation.gif'),

@@ -17,11 +17,10 @@ import HorizontalTile from '../../components/HorizontalTile';
 import {useRoute} from '@react-navigation/native';
 
 const Market = ({navigation, route}: {navigation: any,route:any}) => {
-  // console.log('route in the ', route);
   const {params} = route;
-
-  // console.log(index, '++++++');
-
+  const navigateMainCrypto = () => {
+    navigation.navigate('MainCrypto', {});
+  };
   return (
     <SafeAreaView style={styles.header}>
       <View style={styles.subheader}>
@@ -31,7 +30,8 @@ const Market = ({navigation, route}: {navigation: any,route:any}) => {
         </TouchableOpacity>
       </View>
 
-      <MarketMainFlatlist index={params?.index || 0} />
+      <MarketMainFlatlist index={params?.index || 0} navigation={navigation}
+        navigateMainCrypto={navigateMainCrypto}/>
     </SafeAreaView>
   );
 };

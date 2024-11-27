@@ -8,21 +8,21 @@ const PortfolioTile = () => {
       <View style={styles.container}>
         <View style={styles.leftView}>
           <View style={styles.lupperView}>
-            <Text style={styles.priceText}>$1200</Text>
+            <Text style={styles.priceText}>$0</Text>
             <Text style={styles.priceTypeText}>Invested Value</Text>
           </View>
           <View style={styles.llowerView}>
-            <Text style={styles.changePriceText}>$100</Text>
+            <Text style={styles.changePriceText}>$0</Text>
             <Text style={styles.priceTypeText}>Loss INR</Text>
           </View>
         </View>
         <View style={styles.rightView}>
           <View style={styles.rupperView}>
-            <Text style={styles.priceText}>$1100</Text>
+            <Text style={styles.priceText}>$0</Text>
             <Text style={styles.priceTypeText}>Current Value</Text>
           </View>
           <View style={styles.rlowerView}>
-            <Text style={styles.changePriceText}>10.6%</Text>
+            <Text style={styles.changePriceText}>0%</Text>
             <Text style={styles.priceTypeText}>Loss%</Text>
           </View>
         </View>

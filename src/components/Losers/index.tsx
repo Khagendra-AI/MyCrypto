@@ -9,12 +9,14 @@ const Losers = ({
   navigateLosers,
   navigateMainCrypto,
   navigation,
+
 }: {
   navigateLosers: any;
   navigateMainCrypto: any;
   navigation:any;
+
 }) => {
-  const {products} = useSelector(store => store.mainapi);
+  const {products}= useSelector(store => store.mainapi);
   const apiData = products?.data;
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr < 0,
@@ -55,7 +57,7 @@ const Losers = ({
           style={styles.touchableViewall}
           onPress={() => navigateLosers(2)}>
           <Text
-            style={{color: 'blue', fontWeight: '600', margin: 5, fontSize: 14}}>
+            style={{color: '#00FFFF', fontWeight: '600', margin: 5, fontSize: 14}}>
             View all
           </Text>
         </TouchableOpacity>

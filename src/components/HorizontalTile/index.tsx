@@ -11,11 +11,17 @@ import {Icon} from '../../assets';
 import styles from './styles';
 
 const HorizontalTile = (props: any) => {
-  const {cryptoIcon, price, priceChange, cryptoName, cryptoShortName} = props;
+  const {cryptoIcon, price, priceChange, cryptoName, cryptoShortName,navigateToCrypto,
+    item,screenName,tileId} = props;
   return (
     // <View style={styles.maincontainer}>
     <>
-      <TouchableOpacity activeOpacity={1}>
+      <TouchableOpacity activeOpacity={1} onPress={() =>
+          navigateToCrypto?.navigate?.(screenName, {
+            tileId: tileId ?? '',
+            
+            item
+          })}>
         <View style={styles.container}>
           <View style={styles.infoview}>
             <Image source={cryptoIcon} style={styles.cryptoIcon} />
