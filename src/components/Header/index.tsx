@@ -10,12 +10,12 @@ import React from 'react';
 import {Icon} from '../../assets';
 import styles from './styles';
 
-const Header = ({navigateSearch}:{navigateSearch:any}) => {
+const Header = ({navigateSearch,navigateProfile}:{navigateSearch:any,navigateProfile:any}) => {
   return (
     <SafeAreaView>
       <View style={styles.header}>
         <View style={styles.leftheader}>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={navigateProfile}>
             <Image source={Icon.profileww} style={styles.profileicon} />
           </TouchableOpacity>
         </View>

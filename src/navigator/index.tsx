@@ -9,6 +9,7 @@ import MainCrypto from '../screens/MainCrypto';
 import AddMoney from '../components/AddMoney';
 import BuyPage from '../components/BuyPage';
 import SellPage from '../components/SellPage';
+import Profile from '../components/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function RootNavigation() {
         <Stack.Screen name="AddMoney" component={AddMoney}  options={{headerShown:false}} />
         <Stack.Screen name="BuyPage" component={BuyPage}  options={{headerShown:false}} />
         <Stack.Screen name="SellPage" component={SellPage}  options={{headerShown:false}} />
+        <Stack.Screen name="Profile" component={Profile}  options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

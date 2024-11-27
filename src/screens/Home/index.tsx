@@ -41,9 +41,12 @@ const Home = ({navigation}: {navigation: any}) => {
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
+  const navigateProfile = () => {
+    navigation.navigate('Profile');
+  };
   return (
     <ScrollView style={styles.container} bounces={false}>
-      <Header navigateSearch={navigateSearch} />
+      <Header navigateSearch={navigateSearch} navigateProfile={navigateProfile} />
       <CurrentValueTile
         navigatePortfolio={navigatePortfolio}
         navigateAddMoney={navigateAddMoney}

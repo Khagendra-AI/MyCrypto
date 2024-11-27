@@ -29,6 +29,11 @@ const Icon={
   earn:require('./icons/earn.gif'),
   bell:require('./icons/bell.png'),
   star:require('./icons/star.png'),
+  right:require('./icons/right.png'),
+  wallet:require('./icons/wallet.png'),
+  bank:require('./icons/bank.png'),
+  reports:require('./icons/reports.png'),
+  history:require('./icons/history.png'),
 }
 const Images={
   cryptoanimation:require('./images/cryptoanimation.gif'),
