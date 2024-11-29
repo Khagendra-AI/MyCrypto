@@ -14,11 +14,12 @@ import HorizontalTile from '../HorizontalTile';
 import styles from './styles';
 import {useSelector} from 'react-redux';
 import { newapiData } from '../../../newData';
+import { Icon } from '../../assets';
 
 const MarketMainFlatlist = ({index,navigateMainCrypto,
   navigation,}: {index: any,navigateMainCrypto:any,
     navigation:any,}) => {
-  const {products} = useSelector(store => store.mainapi);
+  const {products,watchlistdata} = useSelector(store => store.mainapi);
   const apiData = products?.data;
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr > 0,
@@ -91,12 +92,12 @@ const MarketMainFlatlist = ({index,navigateMainCrypto,
       ...navigateMainCrypto,
       tileId: item.id ?? '',
     }}
-    item={item}
-      cryptoShortName={item.symbol}
-      cryptoName={item.name}
-      cryptoIcon={item.cryptoIcon}
-      price={Number(item.priceUsd ?? 0).toFixed(2)}
-      priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
+    item={item || item.item}
+      cryptoShortName={item.symbol || (item.item?.symbol)}
+      cryptoName={item.name  || (item.item?.name)}
+      cryptoIcon={Icon.crypto}
+      price={Number(item.priceUsd ?? item.item?.priceUsd).toFixed(2) }
+      priceChange={Number(item.changePercent24Hr ?? item.item?.changePercent24Hr).toFixed(2)}
     />
   );
 
@@ -112,7 +113,7 @@ const MarketMainFlatlist = ({index,navigateMainCrypto,
         setDataSet(nsortedGainers);
         return;
       case 3:
-        setDataSet(apiData);
+        setDataSet(watchlistdata);
         return;
       case 4:
         setDataSet(newlyAdded);

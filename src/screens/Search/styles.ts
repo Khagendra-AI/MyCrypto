@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   searchbox: {
     borderRadius: 10,
     padding: 15,
-    width: '80%',
+    // width: '80%',
     backgroundColor: 'white',
   },
   touchableCancel: {},
@@ -41,8 +41,22 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginRight: 40,
   },
-  trendingEleText:{
-    color: 'grey'
+  trendingEleText: {
+    color: 'grey',
+  },
+  cancelImage: {
+    height: 25,
+    width: 25,
+  },
+  touchableCancelImage: {
+    position: 'absolute',
+    // right:2,
+    right: 10,
+    top: 10,
+    // backgroundColor: 'red',
+  },
+  flatlistView:{
+    flex:1
   },
 });
 export default styles;

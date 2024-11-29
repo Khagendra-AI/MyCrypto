@@ -4,6 +4,7 @@ import styles from './styles';
 import data from '../../../data';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useSelector} from 'react-redux';
+import { Icon } from '../../assets';
 
 const Losers = ({
   navigateLosers,
@@ -40,7 +41,7 @@ const Losers = ({
     // navigateMainCrypto={navigateMainCrypto}
     cryptoShortName={item.symbol}
     cryptoName={item.name}
-    cryptoIcon={item.cryptoIcon}
+    cryptoIcon={Icon.crypto}
     price={Number(item.priceUsd ?? 0).toFixed(2)}
     priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
     />

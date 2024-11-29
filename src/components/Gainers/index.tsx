@@ -6,6 +6,7 @@ import Tile from '../Tile';
 import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {addGainers} from '../../redux/config/configSlice';
+import { Icon } from '../../assets';
 
 const Gainers = ({
   navigateGainers,
@@ -46,7 +47,7 @@ const Gainers = ({
       // navigateMainCrypto={navigateMainCrypto}
       cryptoShortName={item.symbol}
       cryptoName={item.name}
-      cryptoIcon={item.cryptoIcon}
+      cryptoIcon={Icon.crypto}
       price={Number(item.priceUsd ?? 0).toFixed(2)}
       priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
     />

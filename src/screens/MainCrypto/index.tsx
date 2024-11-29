@@ -6,19 +6,31 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import IndividualCryptoPortfolio from '../../components/IndividualCryptoPortfolio';
 import MarketStats from '../../components/MarketStats';
 import SimilarCrypto from '../../components/SimilarCrypto';
 import {useRoute} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Chart from '../../components/Chart';
 import {Icon} from '../../assets';
+import {addWatchlist, removeWatchlist} from '../../redux/config/configSlice';
+import starimage from '../../assets/icons/star.png';
+import starbimage from '../../assets/icons/starb.png';
+/**
+ * import watchlistData;
+ * loop on watchlistData ==>  findIndex ==> item.id === ele.id ==> isStarred: false/true
+ * toggle ==> action dispatch ==> payload: { ...item , isStarred: false/true}
+ */
 
 const MainCrypto = ({navigation}: {navigation: any}) => {
   const params = useRoute()?.params;
-
+  const dispatch = useDispatch();
+  const {watchlistdata} = useSelector(store => store.mainapi);
+  const [star, setstar] = useState(false);
+  const [staricon, setstaricon] = useState(starimage);
+  const [mainindex, setmainindex] = useState(-1);
   const navigateWithIndex = (index: any) => {
     navigation.navigate('Market', {index});
   };
@@ -29,7 +41,31 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
   const navigateMainCrypto = () => {
     navigation.navigate('MainCrypto', {});
   };
+  const onStartPress = () => {
+    if (star) {
+      dispatch(removeWatchlist(mainindex));
+      setstaricon(starimage);
+      setstar(false)
+    } else {
+      dispatch(addWatchlist({...params, isStarred: true}));
+      setstaricon(starbimage);
+      setstar(true);
+    }
+  };
 
+  const checkWatchlist = () => {
+    watchlistdata.map((item, index) => {
+      if (item.item.id === params.item.id || params.item.item?.id) {
+        setstar(true);
+        setstaricon(starbimage);
+        setmainindex(index)
+      }
+    });
+  };
+  useEffect(() => {
+    checkWatchlist();
+    console.log('ho gya run')
+  }, []);
   return (
     <View style={styles.scrollview}>
       <View style={styles.container}>
@@ -40,42 +76,42 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
             <Image source={Icon.backw} style={styles.backimage} />
           </TouchableOpacity>
           <View style={styles.headerCryptoInfo}>
-            <Text style={styles.cryptoNameHeader}>{params.item?.symbol}</Text>
+            <Text style={styles.cryptoNameHeader}>{params.item?.symbol || params.item.item?.symbol}</Text>
             <Text
               style={[
                 styles.priceChangeText,
-                {color: params.item?.changePercent24Hr < 0 ? 'red' : 'green'},
+                {color: params.item?.changePercent24Hr < 0 ||params.item.item?.changePercent24Hr < 0 ? 'red' : 'green'},
               ]}>
               {' '}
               {params.item?.changePercent24Hr != null
                 ? parseFloat(params.item?.changePercent24Hr).toFixed(2)
-                : 'N/A'}
+                : parseFloat(params.item.item?.changePercent24Hr).toFixed(2)}
               %
             </Text>
           </View>
-          <TouchableOpacity style={styles.touchableStar}>
-            <Image source={Icon.star} style={styles.starimage} />
+          <TouchableOpacity style={styles.touchableStar} onPress={onStartPress}>
+            <Image source={staricon} style={styles.starimage} />
           </TouchableOpacity>
         </View>
         <ScrollView>
           <Chart
-            chartColor={params.item?.changePercent24Hr}
-            price={params.item?.priceUsd}
+            chartColor={params.item?.changePercent24Hr || params.item.item?.changePercent24Hr}
+            price={params.item?.priceUsd || params.item.item?.priceUsd}
           />
           <IndividualCryptoPortfolio
-            shortName={params.item?.symbol}
+            shortName={params.item?.symbol }
             cryptoName={params.item?.name}
           />
           <MarketStats
-            supply={croreFunction(params.item?.supply)}
-            mCap={croreFunction(params.item?.marketCapUsd)}
-            mRank={params.item?.rank}
+            supply={croreFunction(params.item?.supply || params.item.item?.supply)}
+            mCap={croreFunction(params.item?.marketCapUsd || params.item.item?.marketCapUsd)}
+            mRank={params.item?.rank || params.item.item?.rank}
           />
-          <SimilarCrypto
+          {/* <SimilarCrypto
             navigateWatchlist={navigateWithIndex}
             navigation={navigation}
             navigateMainCrypto={navigateMainCrypto}
-          />
+          /> */}
         </ScrollView>
       </View>
       <View style={styles.footerView}>
@@ -86,14 +122,16 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
           style={styles.touchableBuy}
           onPress={() =>
             navigation.navigate('BuyPage', {
-              item: params.item,
+              item: params.item || params.item?.item,
             })
           }>
           <Text style={styles.buyText}>Buy</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.touchableSell} onPress={() =>
+        <TouchableOpacity
+          style={styles.touchableSell}
+          onPress={() =>
             navigation.navigate('SellPage', {
-              item: params.item,
+              item: params.item || params.item?.item,
             })
           }>
           <Text style={styles.sellText}>Sell</Text>

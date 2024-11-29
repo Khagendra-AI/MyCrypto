@@ -44,9 +44,12 @@ const Home = ({navigation}: {navigation: any}) => {
   const navigateProfile = () => {
     navigation.navigate('Profile');
   };
+  const navigateReward=()=>{
+    navigation.navigate('RewardScreen');
+  }
   return (
-    <ScrollView style={styles.container} bounces={false}>
-      <Header navigateSearch={navigateSearch} navigateProfile={navigateProfile} />
+    <ScrollView style={styles.container} bounces={false} showsVerticalScrollIndicator={false}>
+      <Header navigateSearch={navigateSearch} navigateProfile={navigateProfile} navigateReward={navigateReward}/>
       <CurrentValueTile
         navigatePortfolio={navigatePortfolio}
         navigateAddMoney={navigateAddMoney}

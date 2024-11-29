@@ -17,6 +17,7 @@ let initialState = {
   gainersData: [],
   loosersData: [],
   walletBalance: 0,
+  watchlistdata: [],
 };
 const configSlice = createSlice({
   name: 'Config',
@@ -31,7 +32,19 @@ const configSlice = createSlice({
     addBalance: (state, action) => {
       const data = action.payload;
       state.walletBalance += Number(data);
-      console.log(state.walletBalance, 'walletbalance');
+      //console.log(state.walletBalance, 'walletbalance');
+    },
+    addWatchlist: (state, action) => {
+      const data = action.payload;
+
+      state.watchlistdata.push(data);
+      console.log(state.watchlistdata,'data addded')
+    },
+    removeWatchlist: (state, action) => {
+      const data = action.payload;
+
+      state.watchlistdata.pop(data);
+      console.log(state.watchlistdata,'deleted')
     },
   },
   extraReducers: builder => {
@@ -72,6 +85,8 @@ export const {
   // increaseCountByPayload,
   addGainers,
   addBalance,
+  addWatchlist,
+  removeWatchlist,
 } = configSlice.actions;
 
 export default configSlice.reducer;

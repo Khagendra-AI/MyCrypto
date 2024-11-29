@@ -74,7 +74,7 @@ export default function BottomNav() {
           options={{
             tabBarIcon: ({color, size}) => (
               <Image
-                source={Icon.gift}
+                source={Icon.settings}
                 style={[
                   styles.icon,
                   {tintColor: color, width: size, height: size},

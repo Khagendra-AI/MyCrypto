@@ -30,8 +30,8 @@ const BuyPage = ({navigation}: {navigation: any}) => {
           <Image source={Icon.backw} />
         </TouchableOpacity>
         <View style={styles.infoViewHeader}>
-          <Text style={styles.crypNameText}>Buy {params.item.symbol}</Text>
-          <Text style={styles.cryppriceText}>${parseFloat(params.item?.priceUsd).toFixed(2)}</Text>
+          <Text style={styles.crypNameText}>Buy {params.item.symbol || params.item.item?.symbol}</Text>
+          <Text style={styles.cryppriceText}>${parseFloat(params.item?.priceUsd || params.item.item?.priceUsd).toFixed(2)}</Text>
         </View>
         <View></View>
       </View>
@@ -63,7 +63,7 @@ const BuyPage = ({navigation}: {navigation: any}) => {
       </View>
       <TouchableOpacity style={styles.touchableDeposit} onPress={onBuyPress}>
         <Text style={styles.depositText}>
-          Buy {params.item.symbol}
+          Buy {params.item.symbol || params.item.item?.symbol}
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

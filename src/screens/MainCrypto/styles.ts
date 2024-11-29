@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     width: 35,
   },
   starimage: {
+    // backgroundColor:'red',
     height: 25,
     width: 25,
   },
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   footerView: {
+    padding:10,
     height: '12%',
     alignItems: 'center',
     width: SCREEN_WIDTH * 0.98,

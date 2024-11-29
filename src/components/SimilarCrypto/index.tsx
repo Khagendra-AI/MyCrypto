@@ -4,6 +4,7 @@ import Tile from '../Tile';
 import data from '../../../data';
 import styles from './styles';
 import {useSelector} from 'react-redux';
+import { Icon } from '../../assets';
 
 const SimilarCrypto = ({
   navigateWatchlist,
@@ -31,7 +32,7 @@ const SimilarCrypto = ({
     // navigateMainCrypto={navigateMainCrypto}
     cryptoShortName={item.symbol}
     cryptoName={item.name}
-    cryptoIcon={item.cryptoIcon}
+    cryptoIcon={Icon.crypto}
     price={Number(item.priceUsd ?? 0).toFixed(2)}
     priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
     />

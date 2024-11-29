@@ -1,5 +1,6 @@
 import {
   FlatList,
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -11,6 +12,7 @@ import React, {useState} from 'react';
 import styles from './styles';
 import {useSelector} from 'react-redux';
 import HorizontalTile from '../../components/HorizontalTile';
+import {Icon} from '../../assets';
 
 const Search = ({
   index,
@@ -45,22 +47,27 @@ const Search = ({
       item={item}
       cryptoShortName={item.symbol}
       cryptoName={item.name}
-      cryptoIcon={item.cryptoIcon}
+      cryptoIcon={Icon.crypto}
       price={Number(item.priceUsd ?? 0).toFixed(2)}
       priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
     />
   );
-  console.log(filteredCoins);
+  // console.log(filteredCoins);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TextInput
-          placeholder="Search for coins"
-          style={styles.searchbox}
-          autoFocus={true}
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
+        <View style={{width: '80%'}}>
+          <TextInput
+            placeholder="Search for coins"
+            style={styles.searchbox}
+            autoFocus={true}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
+          <TouchableOpacity style={styles.touchableCancelImage} onPress={() => setSearchQuery('')}>>
+            <Image source={Icon.cancel} style={styles.cancelImage} />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           style={styles.touchableCancel}
           onPress={() => navigation.goBack()}>
@@ -72,24 +79,34 @@ const Search = ({
           <Text style={styles.trendingText}>Trending Now</Text>
         </View>
         <View style={styles.trendingSubView}>
-          <View style={styles.trendingTextView}>
+          <TouchableOpacity
+            style={styles.trendingTextView}
+            onPress={() => setSearchQuery('Shiba Inu')}>
             <Text style={styles.trendingEleText}>Shiba Inu</Text>
-          </View>
-          <View style={styles.trendingTextView}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.trendingTextView}
+            onPress={() => setSearchQuery('Dogecoin')}>
             <Text style={styles.trendingEleText}>Dogecoin</Text>
-          </View>
-          <View style={styles.trendingTextView}>
-            <Text style={styles.trendingEleText}>PEPE</Text>
-          </View>
-          <View style={styles.trendingTextView}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.trendingTextView}
+            onPress={() => setSearchQuery('ADA')}>
+            <Text style={styles.trendingEleText}>ADA</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.trendingTextView}
+            onPress={() => setSearchQuery('Solana')}>
             <Text style={styles.trendingEleText}>Solana</Text>
-          </View>
-          <View style={styles.trendingTextView}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.trendingTextView}
+            onPress={() => setSearchQuery('BitCoin')}>
             <Text style={styles.trendingEleText}>BitCoin</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
-      <View>
+      <View style={styles.flatlistView}>
         <FlatList
           bounces={false}
           data={filteredCoins()}

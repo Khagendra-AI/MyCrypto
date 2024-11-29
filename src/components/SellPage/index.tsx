@@ -30,13 +30,13 @@ const SellPage = ({navigation}: {navigation: any}) => {
           <Image source={Icon.backw} />
         </TouchableOpacity>
         <View style={styles.infoViewHeader}>
-          <Text style={styles.crypNameText}>Sell {params.item.symbol}</Text>
-          <Text style={styles.cryppriceText}>${parseFloat(params.item?.priceUsd).toFixed(2)}</Text>
+          <Text style={styles.crypNameText}>Sell {params.item.symbol || params.item.item?.symbol}</Text>
+          <Text style={styles.cryppriceText}>${parseFloat(params.item?.priceUsd|| params.item.item?.priceUsd).toFixed(2)}</Text>
         </View>
         <View></View>
       </View>
       <View style={styles.enterAmountView}>
-        <Text style={styles.enterAmountText}>Enter {params.item.symbol} Quantity</Text>
+        <Text style={styles.enterAmountText}>Enter {params.item.symbol || params.item.item?.symbol} Quantity</Text>
         <TextInput
           onChangeText={onamountchange}
           value={amount}

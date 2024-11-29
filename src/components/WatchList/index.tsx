@@ -4,6 +4,7 @@ import Tile from '../Tile';
 import data from '../../../data';
 import styles from './styles';
 import {useSelector} from 'react-redux';
+import { Icon } from '../../assets';
 
 const WatchList = ({
   navigateWatchlist,
@@ -33,7 +34,7 @@ const WatchList = ({
         tileId={item.id ?? ''}
         cryptoShortName={item.symbol}
         cryptoName={item.name}
-        cryptoIcon={item.cryptoIcon}
+        cryptoIcon={Icon.crypto}
         price={Number(item.priceUsd ?? 0).toFixed(2)}
         priceChange={Number(item.changePercent24Hr ?? 0).toFixed(2)}
       />
@@ -44,11 +45,11 @@ const WatchList = ({
       <View style={styles.subcontainer}>
         <Text
           style={{color: 'white', fontWeight: '600', margin: 5, fontSize: 19}}>
-          Watchlist
+          Cryptos
         </Text>
         <TouchableOpacity
           style={styles.touchableViewall}
-          onPress={() => navigateWatchlist(3)}>
+          onPress={() => navigateWatchlist(0)}>
           <Text
             style={{color: '#00FFFF', fontWeight: '600', margin: 5, fontSize: 14}}>
             View all

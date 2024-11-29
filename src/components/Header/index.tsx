@@ -10,7 +10,7 @@ import React from 'react';
 import {Icon} from '../../assets';
 import styles from './styles';
 
-const Header = ({navigateSearch,navigateProfile}:{navigateSearch:any,navigateProfile:any}) => {
+const Header = ({navigateSearch,navigateProfile,navigateReward}:{navigateSearch:any,navigateProfile:any,navigateReward:any}) => {
   return (
     <SafeAreaView>
       <View style={styles.header}>
@@ -23,7 +23,7 @@ const Header = ({navigateSearch,navigateProfile}:{navigateSearch:any,navigatePro
           <TouchableOpacity style={styles.swiggytouch}>
             <Image source={Icon.swiggy} style={styles.swiggy} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.headerimage}>
+          <TouchableOpacity style={styles.headerimage} onPress={navigateReward}>
             <Image source={Icon.gift} style={styles.headericon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.headerimage} onPress={navigateSearch}>

@@ -22,16 +22,16 @@ const Profile = ({navigation}: {navigation: any}) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={Icon.backw} style={styles.backimage} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={''}>
+        <TouchableOpacity >
           <Image source={Icon.bell} style={styles.backimage} />
         </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
-          <Text style={styles.nameText}>Ayush Chaudhary</Text>
-          <Text style={styles.numberText}>+917351386677</Text>
-          <Text style={styles.mailText}>cnrw@nfd.vfd</Text>
+          <Text style={styles.nameText}>Devansh Verma</Text>
+          <Text style={styles.numberText}>+917376982077</Text>
+          <Text style={styles.mailText}>devansh.verma@appinventiv.com</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>
