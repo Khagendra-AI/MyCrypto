@@ -18,6 +18,8 @@ import {Icon} from '../../assets';
 import {addWatchlist, removeWatchlist} from '../../redux/config/configSlice';
 import starimage from '../../assets/icons/star.png';
 import starbimage from '../../assets/icons/starb.png';
+import Star from '../../components/Star';
+import { SafeAreaView } from 'react-native-safe-area-context';
 /**
  * import watchlistData;
  * loop on watchlistData ==>  findIndex ==> item.id === ele.id ==> isStarred: false/true
@@ -64,10 +66,11 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
   };
   useEffect(() => {
     checkWatchlist();
-    console.log('ho gya run')
+    console.log('ho gya run', watchlistdata)
   }, []);
+
   return (
-    <View style={styles.scrollview}>
+    <SafeAreaView style={styles.scrollview}>
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity
@@ -89,9 +92,10 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
               %
             </Text>
           </View>
-          <TouchableOpacity style={styles.touchableStar} onPress={onStartPress}>
+          {/* <TouchableOpacity style={styles.touchableStar} onPress={onStartPress}>
             <Image source={staricon} style={styles.starimage} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <Star onStartPress={onStartPress} staricon={staricon}/>
         </View>
         <ScrollView>
           <Chart
@@ -137,7 +141,7 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
           <Text style={styles.sellText}>Sell</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

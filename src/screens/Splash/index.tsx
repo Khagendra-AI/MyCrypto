@@ -17,7 +17,7 @@ import { Images } from '../../assets';
 const Splash = ({navigation}:{navigation:any}) => {
   useEffect(() => {
     const timer = setTimeout(async () => {
-      navigation.replace('BottomNav');
+      navigation.replace('LoginPage');
     }, 3000);
 
     return () => clearTimeout(timer);

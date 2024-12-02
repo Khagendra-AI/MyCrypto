@@ -11,6 +11,7 @@ import styles from './styles';
 import {Icon} from '../../assets';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBalance } from '../../redux/config/configSlice';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AddMoney = ({navigation}:{navigation:any}) => {
   const[money,setmoney]=useState("")
@@ -27,7 +28,7 @@ const AddMoney = ({navigation}:{navigation:any}) => {
   const on500press = () => {};
   const {products,gainersData,walletBalance} = useSelector(store => store.mainapi);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={()=> navigation.goBack()}>
           <Image source={Icon.backw} style={styles.backimage} />
@@ -68,7 +69,7 @@ const AddMoney = ({navigation}:{navigation:any}) => {
       <TouchableOpacity style={styles.touchableDeposit} onPress={onDepositPress}>
         <Text style={styles.depositText}>Deposit ${money}</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -13,13 +13,19 @@ import data from '../../../data';
 import HorizontalTile from '../HorizontalTile';
 import styles from './styles';
 import {useSelector} from 'react-redux';
-import { newapiData } from '../../../newData';
-import { Icon } from '../../assets';
+import {newapiData} from '../../../newData';
+import {Icon} from '../../assets';
 
-const MarketMainFlatlist = ({index,navigateMainCrypto,
-  navigation,}: {index: any,navigateMainCrypto:any,
-    navigation:any,}) => {
-  const {products,watchlistdata} = useSelector(store => store.mainapi);
+const MarketMainFlatlist = ({
+  index,
+  navigateMainCrypto,
+  navigation,
+}: {
+  index: any;
+  navigateMainCrypto: any;
+  navigation: any;
+}) => {
+  const {products, watchlistdata} = useSelector(store => store.mainapi);
   const apiData = products?.data;
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr > 0,
@@ -33,10 +39,9 @@ const MarketMainFlatlist = ({index,navigateMainCrypto,
   const nsortedGainers = negativeGainers.sort(
     (a: any, b: any) => a.changePercent24Hr - b.changePercent24Hr,
   );
-  const newlyAdded :any = newapiData;
+  const newlyAdded: any = newapiData;
 
   const flatListRef: any = useRef(null);
-  // console.log(index);
 
   const [selectedId, setSelectedId] = useState('1');
   const [dataset, setDataSet] = useState(data);
@@ -65,14 +70,15 @@ const MarketMainFlatlist = ({index,navigateMainCrypto,
       (index + 1)?.toString() === 'undefined' ? '1' : (index + 1)?.toString(),
     );
     newData('', index);
-    flatListRef.current.scrollToOffset({offset: 25, animated: true});
-  }, [index]);
+    flatListRef.current.scrollToOffset({offset: 15, animated: true});
+  }, [index, watchlistdata]);
 
   const renderItem = ({item, index}: {item: any; index: number}) => {
     const isSelected = item.id === selectedId;
     return (
       <View style={styles.item}>
-        <TouchableOpacity activeOpacity={1}
+        <TouchableOpacity
+          activeOpacity={1}
           onPress={() => {
             newData(item, index), handlePress(item.id);
           }}>
@@ -86,18 +92,20 @@ const MarketMainFlatlist = ({index,navigateMainCrypto,
 
   const renderdataitem = ({item, index}: {item: any; index: number}) => (
     <HorizontalTile
-    navigateToCrypto={navigation}
-    screenName={'MainCrypto'}
-    navigateMainCrypto={{
-      ...navigateMainCrypto,
-      tileId: item.id ?? '',
-    }}
-    item={item || item.item}
-      cryptoShortName={item.symbol || (item.item?.symbol)}
-      cryptoName={item.name  || (item.item?.name)}
+      navigateToCrypto={navigation}
+      screenName={'MainCrypto'}
+      navigateMainCrypto={{
+        ...navigateMainCrypto,
+        tileId: item.id ?? '',
+      }}
+      item={item || item.item}
+      cryptoShortName={item.symbol || item.item?.symbol}
+      cryptoName={item.name || item.item?.name}
       cryptoIcon={Icon.crypto}
-      price={Number(item.priceUsd ?? item.item?.priceUsd).toFixed(2) }
-      priceChange={Number(item.changePercent24Hr ?? item.item?.changePercent24Hr).toFixed(2)}
+      price={Number(item.priceUsd ?? item.item?.priceUsd).toFixed(2)}
+      priceChange={Number(
+        item.changePercent24Hr ?? item.item?.changePercent24Hr,
+      ).toFixed(2)}
     />
   );
 

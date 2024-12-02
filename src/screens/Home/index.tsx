@@ -11,19 +11,9 @@ import BannerAnimated from '../../components/BannerAnimated';
 import SlidingBanner from '../../components/SlidingBanner';
 import CurrentValueTile from '../../components/CurrentValueTile';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductsAction} from '../../redux/config/configAction';
-
 
 const Home = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
-
-  useEffect(() => {
-    dispatch(getProductsAction())
-      .unwrap()
-      .then((res: any) => {
-      })
-      .catch();
-  }, []);
 
   const navigateSearch = () => {
     navigation.navigate('Search');
@@ -44,12 +34,19 @@ const Home = ({navigation}: {navigation: any}) => {
   const navigateProfile = () => {
     navigation.navigate('Profile');
   };
-  const navigateReward=()=>{
+  const navigateReward = () => {
     navigation.navigate('RewardScreen');
-  }
+  };
   return (
-    <ScrollView style={styles.container} bounces={false} showsVerticalScrollIndicator={false}>
-      <Header navigateSearch={navigateSearch} navigateProfile={navigateProfile} navigateReward={navigateReward}/>
+    <ScrollView
+      style={styles.container}
+      bounces={false}
+      showsVerticalScrollIndicator={false}>
+      <Header
+        navigateSearch={navigateSearch}
+        navigateProfile={navigateProfile}
+        navigateReward={navigateReward}
+      />
       <CurrentValueTile
         navigatePortfolio={navigatePortfolio}
         navigateAddMoney={navigateAddMoney}
@@ -70,7 +67,7 @@ const Home = ({navigation}: {navigation: any}) => {
         navigateMainCrypto={navigateMainCrypto}
       />
       <Losers
-      navigation={navigation}
+        navigation={navigation}
         navigateLosers={navigateWithIndex}
         navigateMainCrypto={navigateMainCrypto}
       />

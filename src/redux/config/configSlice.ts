@@ -18,6 +18,9 @@ let initialState = {
   loosersData: [],
   walletBalance: 0,
   watchlistdata: [],
+  useremail:"",
+  userphone:"",
+  username:"",
 };
 const configSlice = createSlice({
   name: 'Config',
@@ -45,6 +48,13 @@ const configSlice = createSlice({
 
       state.watchlistdata.pop(data);
       console.log(state.watchlistdata,'deleted')
+    },
+    addLoginData: (state, action) => {
+      const data = action.payload;
+      state.userphone=data.phone
+      state.useremail=data.email
+      state.username=data.name
+      // console.log(data)
     },
   },
   extraReducers: builder => {
@@ -87,6 +97,7 @@ export const {
   addBalance,
   addWatchlist,
   removeWatchlist,
+  addLoginData,
 } = configSlice.actions;
 
 export default configSlice.reducer;

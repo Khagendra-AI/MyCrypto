@@ -11,9 +11,11 @@ import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Icon} from '../../assets';
 import ProfileTile from '../../components/ProfileTile';
+import { useSelector } from 'react-redux';
 
 
 const Settings = ({navigation}: {navigation: any}) => {
+  const {username,userphone,useremail} = useSelector(store => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
@@ -30,9 +32,9 @@ const Settings = ({navigation}: {navigation: any}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
-          <Text style={styles.nameText}>Devansh Verma</Text>
-          <Text style={styles.numberText}>+917376982077</Text>
-          <Text style={styles.mailText}>devansh.verma@appinventiv.com</Text>
+          <Text style={styles.nameText}>{username}</Text>
+          <Text style={styles.numberText}>{userphone}</Text>
+          <Text style={styles.mailText}>{useremail}</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>
