@@ -1,126 +1,99 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, StatusBar } from 'react-native';
-import styles from './styles';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  Image,
+  StatusBar,
+} from 'react-native';
+import auth from '@react-native-firebase/auth';
 import { useDispatch } from 'react-redux';
-import { addLoginData } from '../../redux/config/configSlice';
 import { getProductsAction } from '../../redux/config/configAction';
+import LinearGradient from 'react-native-linear-gradient';
+import { Icon } from '../../assets';  
+import { styles } from './styles';
 
-const LoginPage = ({navigation}:{navigation:any}) => {
+const LoginPage = ({ navigation }: any) => {
   const dispatch = useDispatch<any>();
-  useEffect(() => {
-    dispatch(getProductsAction())
-      .unwrap()
-      .then((res: any) => {
-      })
-      .catch();
-  }, []);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  });
-  const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  });
-  const handleLogin = () => {
-    if (validateForm()){
-      dispatch(addLoginData(formData))
-      navigation.replace("BottomNav")
-    }
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(true);
 
+  const handleLogin = async () => {
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+      console.log('Logged in user:', user);
+      dispatch(getProductsAction())
+        .unwrap()
+        .then(() => {
+          navigation.replace('BottomNav');
+        })
+        .catch(({err}:any) => {
+          console.error('Error fetching products', err);
+        });
+    } catch (error) {
+      Alert.alert('Login Error', 'Something went wrong. Please try again.');
+    }
   };
 
-  const handleSignUp = () => {
+  const isButtonDisabled = !email.trim() || !password.trim();
 
-  };
-
-  const handleInputChange = (field, value) => {
-    setFormData(prevState => ({
-      ...prevState,
-      [field]: value
-    }));
-  };
-  const validateForm = () => {
-    let isValid = true;
-    const newErrors = { name: '', email: '', phone: '' };
-
-    // Name validation (required)
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-      isValid = false;
-    }
-
-    // Email validation (required and valid email format)
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-      isValid = false;
-    }
-
-    // Phone validation (required and valid phone format)
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-      isValid = false;
-    } else if (!/^\d{10}$/.test(formData.phone)) {
-      newErrors.phone = 'Phone number must be 10 digits';
-      isValid = false;
-    }
-
-    setErrors(newErrors); // Update errors only when validation runs
-    return isValid;
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#121212" />
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <LinearGradient colors={['black', '#1e1e1e']} style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#1C1C1C" />
+      <View style={styles.header}>
         <Text style={styles.title}>Login</Text>
+      </View>
 
+      <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
-          placeholder="Enter your Name"
-          placeholderTextColor="#aaa"
-          value={formData.name}
-          onChangeText={(text) => handleInputChange('name', text)}
-        />
-        {errors.name ? <Text style={styles.errorText}>{errors.name}</Text> : null}
-
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your Email"
-          placeholderTextColor="#aaa"
-          value={formData.email}
-          onChangeText={(text) => handleInputChange('email', text)}
+          style={styles.textInput}
+          placeholder="Enter your email"
+          placeholderTextColor="#B0B0B0"
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
-        {errors.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
+      </View>
 
+      <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
-          placeholder="Enter your Phone Number"
-          placeholderTextColor="#aaa"
-          value={formData.phone}
-          onChangeText={(text) => handleInputChange('phone', text)}
-          keyboardType="phone-pad"
+          style={styles.textInput}
+          placeholder="Enter your password"
+          placeholderTextColor="#B0B0B0"
+          secureTextEntry={showPassword}
+          value={password}
+          onChangeText={setPassword}
         />
-         {errors.phone ? <Text style={styles.errorText}>{errors.phone}</Text> : null}
-
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity style={styles.toggleEye} onPress={togglePassword}>
+          {showPassword ? <Image source={Icon.eye} style={styles.eyeIcon} /> : <Image source={Icon.eyeoff} style={styles.eyeIcon} />}
         </TouchableOpacity>
+      </View>
 
-        <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>Do not have an account? </Text>
-          <TouchableOpacity onPress={handleSignUp}>
-            <Text style={styles.signupLink}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </View>
+      <TouchableOpacity
+        style={[styles.button, isButtonDisabled && { opacity: 0.6 }]}
+        onPress={handleLogin}
+        disabled={isButtonDisabled}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.linkButton} onPress={() => navigation.navigate('CreateAccount')}>
+          <Text style={styles.linkText}>Create an Account</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.linkButton} onPress={() => navigation.navigate('ForgotPassword')}>
+          <Text style={styles.linkText}>Forgot Password?</Text>
+        </TouchableOpacity>
+      </View>
+    </LinearGradient>
   );
 };
 

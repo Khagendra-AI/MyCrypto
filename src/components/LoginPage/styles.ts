@@ -1,63 +1,70 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    
     justifyContent: 'center',
-    padding: 16,
+    backgroundColor: '#1C1C1C',  
   },
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-  },
-  title: {
-    color: '#fff',
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  header: {
     marginBottom: 40,
   },
-  input: {
-    height: 50,
-    backgroundColor: '#333',
-    color: '#fff',
-    borderRadius: 8,
-    marginVertical: '3%',
-    paddingHorizontal: 16,
+  title: {
+    color: '#FFFFFF',
+    fontSize: 38,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  inputContainer: {
+    backgroundColor: '#34495E',  
+    borderRadius: 12,
+    marginVertical: 10,
+    paddingHorizontal: 15,
+    height: 55,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#2980B9',  
+  },
+  textInput: {
+    color: '#FFFFFF',
     fontSize: 16,
+    paddingVertical: 5,
   },
   button: {
-    backgroundColor: '#6200ea',
-    paddingVertical: 12,
-    borderRadius: 8,
+    backgroundColor: '#2980B9',  
+    borderRadius: 10,
+    height: 50,
     alignItems: 'center',
-    marginVertical: '7%',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginHorizontal: 15,
   },
   buttonText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: 'bold',
   },
-  signupContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 10,
+  footer: {
+    marginTop: 30,
+    alignItems: 'center',
   },
-  signupText: {
-    color: '#aaa',
-    fontSize: 16,
+  linkButton: {
+    marginVertical: 10,
   },
-  signupLink: {
-    color: '#6200ea',
-    fontSize: 16,
+  linkText: {
+    color: '#2980B9',  // Blue link color
+    fontSize: 14,
     fontWeight: 'bold',
   },
-  errorText: {
-    color: 'red',
-    fontSize: 12,
-    // marginVertical: 5,
+  toggleEye: {
+    position: 'absolute',
+    right: 15,
+    top: '35%',
+  },
+  eyeIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#B0B0B0',  // Light gray for the icon
   },
 });
-
-export default styles;

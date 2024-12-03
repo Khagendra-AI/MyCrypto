@@ -39,6 +39,8 @@ const Icon = {
   cancel: require('./icons/cancel.png'),
   starb: require('./icons/starb.png'),
   crypto: require('./icons/crypto.png'),
+  eye: require('./icons/eye.png'),
+  eyeoff: require('./icons/eyeoff.png'),
 };
 const Images = {
   cryptoanimation: require('./images/cryptoanimation.gif'),
