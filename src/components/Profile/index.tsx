@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -12,12 +13,27 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Icon} from '../../assets';
 import ProfileTile from '../ProfileTile';
 import { useSelector } from 'react-redux';
+import auth from '@react-native-firebase/auth';
 
 const Profile = ({navigation}: {navigation: any}) => {
   const {username,userphone,useremail} = useSelector(store => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
+  const handleLogout = async () => {
+    try {
+      await auth().signOut();
+      Alert.alert('Success', 'You have logged out successfully!');
+      navigation.reset({
+        index: 0,   
+        routes: [{ name: 'LoginPage' }],   
+      });
+    } catch (error) {
+
+      Alert.alert('Error', 'There was a problem logging out.');
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -43,12 +59,14 @@ const Profile = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.accountTiles}>
           <ProfileTile
+          navigateTo={navigateAddMoney}
             heading={'User Verification'}
             body={'Complete your KYC to buy, sell and withdraw'}
             photo={Icon.profileww}
             bcolor={'#6495ED'}
           />
           <ProfileTile
+          navigateTo={navigateAddMoney}
             heading={'Bank Details'}
             body={
               'This account is used to facilitate all your deposits and withdrawals'
@@ -59,7 +77,7 @@ const Profile = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.normalTiles}>
           <ProfileTile
-            
+            navigateTo={navigateAddMoney}
             heading={'History'}
             body={'View your past transactions'}
             photo={Icon.history}
@@ -73,13 +91,14 @@ const Profile = ({navigation}: {navigation: any}) => {
             bcolor={'#1e1e1f'}
           />
           <ProfileTile
+          navigateTo={navigateAddMoney}
             heading={'Reports'}
             body={'Download your account statement'}
             photo={Icon.reports}
             bcolor={'#1e1e1f'}
           />
         </View>
-        <TouchableOpacity style={styles.touchableLogout}>
+        <TouchableOpacity style={styles.touchableLogout} onPress={handleLogout} >
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>

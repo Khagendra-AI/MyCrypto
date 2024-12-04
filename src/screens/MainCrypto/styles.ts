@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     top: 0,
     width: '100%',
   },
+  
   headerCryptoInfo: {
     flexDirection: 'row',
     borderWidth: 1,
@@ -46,6 +47,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'black',
   },
+  currentPriceView:{
+    alignItems:"center",
+    marginTop:'10%',
+    alignSelf:"center",
+  },
+  currentPrice:{
+    color:'white',
+    fontSize:15,
+
+  },
+  Price:{
+    fontSize:25,
+  },
+
   footerView: {
     padding:10,
     height: '12%',

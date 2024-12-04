@@ -46,7 +46,7 @@ const Chart = ({chartColor, price}: {chartColor: any; price: number}) => {
         hideRules
         color={chartColor < 0 ? 'red' : 'green'}
         //  spacing={100}
-        // curveType={}
+        // curveType={""}
         showVerticalLines
         verticalLinesColor={'grey'}
         verticalLinesThickness={0.5}

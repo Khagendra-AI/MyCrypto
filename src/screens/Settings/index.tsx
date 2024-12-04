@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -12,12 +13,25 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Icon} from '../../assets';
 import ProfileTile from '../../components/ProfileTile';
 import { useSelector } from 'react-redux';
-
+import auth from '@react-native-firebase/auth';
 
 const Settings = ({navigation}: {navigation: any}) => {
   const {username,userphone,useremail} = useSelector(store => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
+  };
+  const handleLogout = async () => {
+    try {
+      await auth().signOut();
+      Alert.alert('Success', 'You have logged out successfully!');
+      navigation.reset({
+        index: 0,   
+        routes: [{ name: 'LoginPage' }],   
+      });
+    } catch (error) {
+
+      Alert.alert('Error', 'There was a problem logging out.');
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -80,7 +94,7 @@ const Settings = ({navigation}: {navigation: any}) => {
             bcolor={'#1e1e1f'}
           />
         </View>
-        <TouchableOpacity style={styles.touchableLogout}>
+        <TouchableOpacity style={styles.touchableLogout} onPress={handleLogout}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>

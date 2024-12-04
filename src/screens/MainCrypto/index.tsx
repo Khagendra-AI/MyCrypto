@@ -19,7 +19,7 @@ import {addWatchlist, removeWatchlist} from '../../redux/config/configSlice';
 import starimage from '../../assets/icons/star.png';
 import starbimage from '../../assets/icons/starb.png';
 import Star from '../../components/Star';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 /**
  * import watchlistData;
  * loop on watchlistData ==>  findIndex ==> item.id === ele.id ==> isStarred: false/true
@@ -47,7 +47,7 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
     if (star) {
       dispatch(removeWatchlist(mainindex));
       setstaricon(starimage);
-      setstar(false)
+      setstar(false);
     } else {
       dispatch(addWatchlist({...params, isStarred: true}));
       setstaricon(starbimage);
@@ -60,13 +60,13 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
       if (item.item.id === params.item.id || params.item.item?.id) {
         setstar(true);
         setstaricon(starbimage);
-        setmainindex(index)
+        setmainindex(index);
       }
     });
   };
   useEffect(() => {
     checkWatchlist();
-    console.log('ho gya run', watchlistdata)
+    console.log('ho gya run', watchlistdata);
   }, []);
 
   return (
@@ -79,11 +79,19 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
             <Image source={Icon.backw} style={styles.backimage} />
           </TouchableOpacity>
           <View style={styles.headerCryptoInfo}>
-            <Text style={styles.cryptoNameHeader}>{params.item?.symbol || params.item.item?.symbol}</Text>
+            <Text style={styles.cryptoNameHeader}>
+              {params.item?.symbol || params.item.item?.symbol}
+            </Text>
             <Text
               style={[
                 styles.priceChangeText,
-                {color: params.item?.changePercent24Hr < 0 ||params.item.item?.changePercent24Hr < 0 ? 'red' : 'green'},
+                {
+                  color:
+                    params.item?.changePercent24Hr < 0 ||
+                    params.item.item?.changePercent24Hr < 0
+                      ? 'red'
+                      : 'green',
+                },
               ]}>
               {' '}
               {params.item?.changePercent24Hr != null
@@ -95,20 +103,46 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
           {/* <TouchableOpacity style={styles.touchableStar} onPress={onStartPress}>
             <Image source={staricon} style={styles.starimage} />
           </TouchableOpacity> */}
-          <Star onStartPress={onStartPress} staricon={staricon}/>
+          <Star onStartPress={onStartPress} staricon={staricon} />
         </View>
         <ScrollView>
+          <View style={styles.currentPriceView}>
+            <Text style={[styles.currentPrice]}>Current Price</Text>
+            <Text
+              style={[
+                styles.Price,
+                {
+                  color:
+                    params.item?.changePercent24Hr < 0 ||
+                    params.item.item?.changePercent24Hr < 0
+                      ? 'red'
+                      : 'green',
+                },
+              ]}>
+              $
+              {params.item?.priceUsd != null
+                ? parseFloat(params.item?.priceUsd).toFixed(3)
+                : parseFloat(params.item.item?.priceUsd).toFixed(3)}
+            </Text>
+          </View>
           <Chart
-            chartColor={params.item?.changePercent24Hr || params.item.item?.changePercent24Hr}
+            chartColor={
+              params.item?.changePercent24Hr ||
+              params.item.item?.changePercent24Hr
+            }
             price={params.item?.priceUsd || params.item.item?.priceUsd}
           />
           <IndividualCryptoPortfolio
-            shortName={params.item?.symbol }
+            shortName={params.item?.symbol}
             cryptoName={params.item?.name}
           />
           <MarketStats
-            supply={croreFunction(params.item?.supply || params.item.item?.supply)}
-            mCap={croreFunction(params.item?.marketCapUsd || params.item.item?.marketCapUsd)}
+            supply={croreFunction(
+              params.item?.supply || params.item.item?.supply,
+            )}
+            mCap={croreFunction(
+              params.item?.marketCapUsd || params.item.item?.marketCapUsd,
+            )}
             mRank={params.item?.rank || params.item.item?.rank}
           />
           {/* <SimilarCrypto

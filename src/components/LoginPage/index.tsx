@@ -10,6 +10,7 @@ import {
   StatusBar,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import {useDispatch} from 'react-redux';
 import {getProductsAction} from '../../redux/config/configAction';
 import LinearGradient from 'react-native-linear-gradient';
