@@ -4,35 +4,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#121212',  
+    backgroundColor: 'black',  
   },
   header: {
-    left: 20,
-    marginBottom: 20, 
+    marginBottom:'10%',
+    alignItems:'center',
   },
   title: {
-    color: '#FF5733',  
+    color: 'white',  
     fontSize: 40,
-    fontFamily: 'Poppins-SemiBold',
+
   },
   inputContainer: {
-    backgroundColor: '#1e1e1e',   
+    marginVertical:'2%',
+    backgroundColor: '#34495E',   
     borderRadius: 15,
     padding: 3,
-    marginVertical: 10,
+
     marginHorizontal: 15,
     borderWidth: 1,
     height: 50,
   },
   textInput: {
+    
     color: '#FFFFFF',   
     fontSize: 16,
     padding: 9,
-    fontFamily: 'Poppins-Regular',
+
   },
   button: {
-    backgroundColor: '#FF5733',  
-    borderRadius: 30,
+    backgroundColor: '#2980B9',  
+    borderRadius: 10,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
@@ -45,17 +47,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   forgotText: {
-    color: '#FF5733',   
+    color: '#2980B9',   
     textAlign: 'center',
     padding: 5,
     fontSize: 14,
-    fontFamily: 'Poppins-Medium',
+
   },
   createStyle: {
     margin: 18,
-    borderColor: '#FF5733',   
+    borderColor: '#2980B9',   
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 10,
     padding: 10,
   },
   errorText: {

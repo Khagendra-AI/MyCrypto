@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,13 +10,13 @@ import {
   StatusBar,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
-import { useDispatch } from 'react-redux';
-import { getProductsAction } from '../../redux/config/configAction';
+import {useDispatch} from 'react-redux';
+import {getProductsAction} from '../../redux/config/configAction';
 import LinearGradient from 'react-native-linear-gradient';
-import { Icon } from '../../assets';  
-import { styles } from './styles';
+import {Icon} from '../../assets';
+import {styles} from './styles';
 
-const LoginPage = ({ navigation }: any) => {
+const LoginPage = ({navigation}: any) => {
   const dispatch = useDispatch<any>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +24,10 @@ const LoginPage = ({ navigation }: any) => {
 
   const handleLogin = async () => {
     try {
-      const userCredential = await auth().signInWithEmailAndPassword(email, password);
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
       const user = userCredential.user;
       console.log('Logged in user:', user);
       dispatch(getProductsAction())
@@ -32,7 +35,7 @@ const LoginPage = ({ navigation }: any) => {
         .then(() => {
           navigation.replace('BottomNav');
         })
-        .catch(({err}:any) => {
+        .catch(({err}: any) => {
           console.error('Error fetching products', err);
         });
     } catch (error) {
@@ -47,8 +50,8 @@ const LoginPage = ({ navigation }: any) => {
   };
 
   return (
-    <LinearGradient colors={['black', '#1e1e1e']} style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1C1C1C" />
+    
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Login</Text>
       </View>
@@ -74,26 +77,35 @@ const LoginPage = ({ navigation }: any) => {
           onChangeText={setPassword}
         />
         <TouchableOpacity style={styles.toggleEye} onPress={togglePassword}>
-          {showPassword ? <Image source={Icon.eye} style={styles.eyeIcon} /> : <Image source={Icon.eyeoff} style={styles.eyeIcon} />}
+          {showPassword ? (
+            <Image source={Icon.eye} style={styles.eyeIcon} />
+          ) : (
+            <Image source={Icon.eyeoff} style={styles.eyeIcon} />
+          )}
         </TouchableOpacity>
       </View>
 
       <TouchableOpacity
-        style={[styles.button, isButtonDisabled && { opacity: 0.6 }]}
+        style={[styles.button, isButtonDisabled && {opacity: 0.6}]}
         onPress={handleLogin}
         disabled={isButtonDisabled}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.linkButton} onPress={() => navigation.navigate('CreateAccount')}>
+        <TouchableOpacity
+          style={styles.linkButton}
+          onPress={() => navigation.navigate('CreateAccount')}>
           <Text style={styles.linkText}>Create an Account</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.linkButton} onPress={() => navigation.navigate('ForgotPassword')}>
+        <TouchableOpacity
+          style={styles.linkButton}
+          onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={styles.linkText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-    </LinearGradient>
+      </View>
+   
   );
 };
 

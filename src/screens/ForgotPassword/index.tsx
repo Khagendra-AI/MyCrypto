@@ -29,11 +29,9 @@ const ForgotPassword = ({ navigation }: any) => {
   };
 
   return (
-    <LinearGradient
-      colors={["black", "#1e1e1e"]}  
-      style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Forgot{'\n'}Password</Text>
+        <Text style={styles.title}>Forgot Password</Text>
       </View>
 
       <View
@@ -41,12 +39,12 @@ const ForgotPassword = ({ navigation }: any) => {
           styles.inputContainer,
           email !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
             ? { borderColor: 'red' }
-            : { borderColor: '#FF5733' }, 
+            : { borderColor: '#2980B9' }, 
         ]}>
         <TextInput
           style={styles.textInput}
           placeholder="Enter your email"
-          placeholderTextColor={"#bbb"}  
+          placeholderTextColor={"#2980B9"}  
           keyboardType="email-address"
           value={email}
           onChangeText={text => setEmail(text)}
@@ -66,9 +64,9 @@ const ForgotPassword = ({ navigation }: any) => {
       <TouchableOpacity
         style={styles.createStyle}
         onPress={() => navigation.navigate('LoginPage')}>
-        <Text style={styles.forgotText}>Remembered your password? Sign In</Text>
+        <Text style={styles.forgotText}>Sign In?</Text>
       </TouchableOpacity>
-    </LinearGradient>
+    </View>
   );
 };
 

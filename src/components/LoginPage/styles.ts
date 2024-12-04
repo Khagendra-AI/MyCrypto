@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     
     justifyContent: 'center',
-    backgroundColor: '#1C1C1C',  
+    backgroundColor: 'black',  
   },
   header: {
     marginBottom: 40,
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
   },
   linkText: {
-    color: '#2980B9',  // Blue link color
+    color: '#2980B9',  
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -65,6 +65,6 @@ export const styles = StyleSheet.create({
   eyeIcon: {
     width: 20,
     height: 20,
-    tintColor: '#B0B0B0',  // Light gray for the icon
+    tintColor: '#B0B0B0',  
   },
 });

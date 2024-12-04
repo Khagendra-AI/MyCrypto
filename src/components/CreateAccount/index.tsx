@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import auth from '@react-native-firebase/auth';
 import styles from './styles';
 import { Icon } from '../../assets';
@@ -51,11 +50,9 @@ const CreateAccount = ({navigation}: any) => {
   };
 
   return (
-    <LinearGradient
-      colors={["black", "#1e1e1e"]}  
-      style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Create{'\n'}Account</Text>
+        <Text style={styles.title}>Create Account</Text>
       </View>
 
       <View
@@ -63,7 +60,7 @@ const CreateAccount = ({navigation}: any) => {
           styles.inputContainer,
           email !== '' && !validateEmail(email)
             ? {borderColor: 'red'}
-            : {borderColor: '#FF5733'},  
+            : {borderColor: '#2980B9'},  
         ]}>
         <TextInput
           style={styles.textInput}
@@ -83,7 +80,7 @@ const CreateAccount = ({navigation}: any) => {
           styles.inputContainer,
           password !== '' && password.length < 6
             ? {borderColor: 'red'}
-            : {borderColor: '#FF5733'}, 
+            : {borderColor: '#2980B9'}, 
         ]}>
         <TextInput
           style={styles.textInput}
@@ -121,7 +118,7 @@ const CreateAccount = ({navigation}: any) => {
         onPress={() => navigation.navigate('LoginPage')}>
         <Text style={styles.forgotText}>Already have an account? Sign In</Text>
       </TouchableOpacity>
-    </LinearGradient>
+      </View>
   );
 };
 
