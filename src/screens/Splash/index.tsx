@@ -27,7 +27,7 @@ const Splash = ({navigation}:{navigation:any}) => {
     <View style={styles.container}>
       
       <Image
-        resizeMode="cover"
+        resizeMode="contain"
         source={Images.splashimage}
         style={styles.splashalterate}
       />

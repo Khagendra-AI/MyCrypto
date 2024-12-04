@@ -20,9 +20,9 @@ const Header = ({navigateSearch,navigateProfile,navigateReward}:{navigateSearch:
           </TouchableOpacity>
         </View>
         <View style={styles.rightheader}>
-          <TouchableOpacity style={styles.swiggytouch}>
+          {/* <TouchableOpacity style={styles.swiggytouch}>
             <Image source={Icon.swiggy} style={styles.swiggy} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity style={styles.headerimage} onPress={navigateReward}>
             <Image source={Icon.gift} style={styles.headericon} />
           </TouchableOpacity>
