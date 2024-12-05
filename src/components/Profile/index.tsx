@@ -12,10 +12,13 @@ import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Icon} from '../../assets';
 import ProfileTile from '../ProfileTile';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import { removeLoginToken } from '../../redux/config/configSlice';
 
 const Profile = ({navigation}: {navigation: any}) => {
+  const dispatch = useDispatch<any>();
+  const currentUser = auth().currentUser;
   const {username,userphone,useremail} = useSelector(store => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
@@ -23,6 +26,7 @@ const Profile = ({navigation}: {navigation: any}) => {
   const handleLogout = async () => {
     try {
       await auth().signOut();
+      dispatch(removeLoginToken(""))
       Alert.alert('Success', 'You have logged out successfully!');
       navigation.reset({
         index: 0,   
@@ -49,7 +53,7 @@ const Profile = ({navigation}: {navigation: any}) => {
           <Image source={Icon.profileww} />
           <Text style={styles.nameText}>{username}</Text>
           <Text style={styles.numberText}>{userphone}</Text>
-          <Text style={styles.mailText}>{useremail}</Text>
+          <Text style={styles.mailText}>{currentUser?.email}</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>

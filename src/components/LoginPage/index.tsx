@@ -16,6 +16,7 @@ import {getProductsAction} from '../../redux/config/configAction';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from '../../assets';
 import {styles} from './styles';
+import {addLoginToken} from '../../redux/config/configSlice';
 
 const LoginPage = ({navigation}: any) => {
   const dispatch = useDispatch<any>();
@@ -30,6 +31,7 @@ const LoginPage = ({navigation}: any) => {
         password,
       );
       const user = userCredential.user;
+      dispatch(addLoginToken(user?.uid));
       console.log('Logged in user:', user);
       dispatch(getProductsAction())
         .unwrap()
@@ -39,6 +41,8 @@ const LoginPage = ({navigation}: any) => {
         .catch(({err}: any) => {
           console.error('Error fetching products', err);
         });
+
+
     } catch (error) {
       Alert.alert('Login Error', 'Something went wrong. Please try again.');
     }
@@ -51,7 +55,6 @@ const LoginPage = ({navigation}: any) => {
   };
 
   return (
-    
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Login</Text>
@@ -105,8 +108,7 @@ const LoginPage = ({navigation}: any) => {
           <Text style={styles.linkText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-      </View>
-   
+    </View>
   );
 };
 

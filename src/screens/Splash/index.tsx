@@ -9,15 +9,28 @@ import {
   Dimensions,
 } from 'react-native';
 import styles from './styles';
-import { Images } from '../../assets';
+import {Images} from '../../assets';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProductsAction} from '../../redux/config/configAction';
 
-
-
-
-const Splash = ({navigation}:{navigation:any}) => {
+const Splash = ({navigation}: {navigation: any}) => {
+  const dispatch = useDispatch<any>();
+  const {watchlistdata, token} = useSelector(store => store.mainapi);
   useEffect(() => {
     const timer = setTimeout(async () => {
-      navigation.replace('LoginPage');
+      if (token=="") {
+        navigation.replace('LoginPage');
+      } else {
+        dispatch(getProductsAction())
+        .unwrap()
+        .then(() => {
+          navigation.replace('BottomNav');
+        })
+        .catch(({err}: any) => {
+          console.error('Error fetching products', err);
+        });
+
+      }
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -25,21 +38,16 @@ const Splash = ({navigation}:{navigation:any}) => {
 
   return (
     <View style={styles.container}>
-      
       <Image
         resizeMode="contain"
         source={Images.splashimage}
         style={styles.splashalterate}
       />
       <View style={styles.activityView}>
-      <ActivityIndicator size="large" color="white" />
+        <ActivityIndicator size="large" color="white" />
       </View>
-      
-
     </View>
   );
 };
 
-
- 
 export default Splash;

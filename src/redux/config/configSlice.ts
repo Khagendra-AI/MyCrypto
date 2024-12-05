@@ -18,9 +18,10 @@ let initialState = {
   loosersData: [],
   walletBalance: 0,
   watchlistdata: [],
-  useremail:"",
-  userphone:"",
-  username:"",
+  useremail: '',
+  userphone: '',
+  username: '',
+  token: '',
 };
 const configSlice = createSlice({
   name: 'Config',
@@ -41,20 +42,32 @@ const configSlice = createSlice({
       const data = action.payload;
 
       state.watchlistdata.push(data);
-      console.log(state.watchlistdata,'data addded')
+      console.log(state.watchlistdata, 'data addded');
     },
     removeWatchlist: (state, action) => {
       const data = action.payload;
 
       state.watchlistdata.pop(data);
-      console.log(state.watchlistdata,'deleted')
+      console.log(state.watchlistdata, 'deleted');
     },
     addLoginData: (state, action) => {
       const data = action.payload;
-      state.userphone=data.phone
-      state.useremail=data.email
-      state.username=data.name
-      // console.log(data)
+      state.userphone = data.phone;
+      state.useremail = data.email;
+      state.username = data.name;
+
+    },
+    addLoginToken: (state, action) => {
+      console.log("chl gyaa how")
+      const data = action.payload;
+      console.log(data, '+++');
+      state.token = data;
+    },
+    removeLoginToken: (state, action) => {
+      console.log("chl gyaa how")
+      const data = action.payload;
+      console.log(data, '+++');
+      state.token = data;
     },
   },
   extraReducers: builder => {
@@ -98,6 +111,8 @@ export const {
   addWatchlist,
   removeWatchlist,
   addLoginData,
+  addLoginToken,
+  removeLoginToken,
 } = configSlice.actions;
 
 export default configSlice.reducer;
