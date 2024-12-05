@@ -7,7 +7,7 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import auth from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 import styles from './styles';
 import { Icon } from '../../assets';
 import firestore from '@react-native-firebase/firestore';
@@ -46,6 +46,24 @@ const CreateAccount = ({ navigation }: any) => {
         email,
         password,
       );
+      // console.log(userCredential.user,"///")
+      if (userCredential) {
+        const userId = userCredential.user.uid
+        const usersRef = firebase.firestore().collection('users');
+    
+        usersRef.doc(userId).set({
+          name: {name},
+          email: {email},
+        })
+        .then(() => {
+          console.log('User data successfully written!');
+        })
+        .catch(error => {
+          console.error('Error writing document:', error);
+        });
+      } else {
+        // User is signed out
+      }
       // const userRef = firestore().collection('users'); 
       // await userRef.add({
       //   name: name,

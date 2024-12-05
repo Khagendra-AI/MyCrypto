@@ -18,10 +18,8 @@ let initialState = {
   loosersData: [],
   walletBalance: 0,
   watchlistdata: [],
-  useremail: '',
-  userphone: '',
-  username: '',
   token: '',
+  userDetail: {},
 };
 const configSlice = createSlice({
   name: 'Config',
@@ -50,21 +48,26 @@ const configSlice = createSlice({
       state.watchlistdata.pop(data);
       console.log(state.watchlistdata, 'deleted');
     },
-    addLoginData: (state, action) => {
-      const data = action.payload;
-      state.userphone = data.phone;
-      state.useremail = data.email;
-      state.username = data.name;
+    // addLoginData: (state, action) => {
+    //   const data = action.payload;
+    //   state.userphone = data.phone;
+    //   state.useremail = data.email;
+    //   state.username = data.name;
 
-    },
+    // },
     addLoginToken: (state, action) => {
-      console.log("chl gyaa how")
+      console.log('chl gyaa how');
       const data = action.payload;
       console.log(data, '+++');
       state.token = data;
     },
+    addUserData: (state, action) => {
+      const data = action.payload;
+      console.log(data, '+++');
+      state.userDetail = data;
+    },
     removeLoginToken: (state, action) => {
-      console.log("chl gyaa how")
+      console.log('chl gyaa how');
       const data = action.payload;
       console.log(data, '+++');
       state.token = data;
@@ -108,9 +111,9 @@ export const {
   // increaseCountByPayload,
   addGainers,
   addBalance,
+  addUserData,
   addWatchlist,
   removeWatchlist,
-  addLoginData,
   addLoginToken,
   removeLoginToken,
 } = configSlice.actions;

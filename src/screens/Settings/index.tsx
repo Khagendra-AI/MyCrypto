@@ -18,8 +18,8 @@ import { removeLoginToken } from '../../redux/config/configSlice';
 
 const Settings = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
-  const currentUser = auth().currentUser;
-  const {username,userphone,useremail} = useSelector(store => store.mainapi);
+
+  const {userDetail} = useSelector(store => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
@@ -50,9 +50,9 @@ const Settings = ({navigation}: {navigation: any}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
-          <Text style={styles.nameText}>{username}</Text>
-          <Text style={styles.numberText}>{userphone}</Text>
-          <Text style={styles.mailText}>{currentUser?.email}</Text>
+          <Text style={styles.nameText}>{userDetail.name.name}</Text>
+          <Text style={styles.numberText}>{}</Text>
+          <Text style={styles.mailText}>{userDetail.email.email}</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>

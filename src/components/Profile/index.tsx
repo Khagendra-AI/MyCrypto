@@ -7,33 +7,35 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Icon} from '../../assets';
 import ProfileTile from '../ProfileTile';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
-import { removeLoginToken } from '../../redux/config/configSlice';
+import {removeLoginToken} from '../../redux/config/configSlice';
+import firestore from '@react-native-firebase/firestore';
 
 const Profile = ({navigation}: {navigation: any}) => {
+  const {userDetail} = useSelector(store => store.mainapi);
+
   const dispatch = useDispatch<any>();
-  const currentUser = auth().currentUser;
-  const {username,userphone,useremail} = useSelector(store => store.mainapi);
+
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
   const handleLogout = async () => {
     try {
       await auth().signOut();
-      dispatch(removeLoginToken(""))
+      dispatch(removeLoginToken(''));
       Alert.alert('Success', 'You have logged out successfully!');
+      
       navigation.reset({
-        index: 0,   
-        routes: [{ name: 'LoginPage' }],   
+        index: 0,
+        routes: [{name: 'LoginPage'}],
       });
     } catch (error) {
-
       Alert.alert('Error', 'There was a problem logging out.');
     }
   };
@@ -44,16 +46,16 @@ const Profile = ({navigation}: {navigation: any}) => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={Icon.backw} style={styles.backimage} />
         </TouchableOpacity>
-        <TouchableOpacity >
+        <TouchableOpacity>
           <Image source={Icon.bell} style={styles.backimage} />
         </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
-          <Text style={styles.nameText}>{username}</Text>
-          <Text style={styles.numberText}>{userphone}</Text>
-          <Text style={styles.mailText}>{currentUser?.email}</Text>
+          <Text style={styles.nameText}>{userDetail.name.name}</Text>
+          <Text style={styles.numberText}>{}</Text>
+          <Text style={styles.mailText}>{userDetail.email.email}</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>
@@ -63,14 +65,14 @@ const Profile = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.accountTiles}>
           <ProfileTile
-          navigateTo={navigateAddMoney}
+            navigateTo={navigateAddMoney}
             heading={'User Verification'}
             body={'Complete your KYC to buy, sell and withdraw'}
             photo={Icon.profileww}
             bcolor={'#6495ED'}
           />
           <ProfileTile
-          navigateTo={navigateAddMoney}
+            navigateTo={navigateAddMoney}
             heading={'Bank Details'}
             body={
               'This account is used to facilitate all your deposits and withdrawals'
@@ -88,21 +90,21 @@ const Profile = ({navigation}: {navigation: any}) => {
             bcolor={'#1e1e1f'}
           />
           <ProfileTile
-          navigateTo={navigateAddMoney}
+            navigateTo={navigateAddMoney}
             heading={'Wallets'}
             body={'Check your wallet balance'}
             photo={Icon.wallet}
             bcolor={'#1e1e1f'}
           />
           <ProfileTile
-          navigateTo={navigateAddMoney}
+            navigateTo={navigateAddMoney}
             heading={'Reports'}
             body={'Download your account statement'}
             photo={Icon.reports}
             bcolor={'#1e1e1f'}
           />
         </View>
-        <TouchableOpacity style={styles.touchableLogout} onPress={handleLogout} >
+        <TouchableOpacity style={styles.touchableLogout} onPress={handleLogout}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>

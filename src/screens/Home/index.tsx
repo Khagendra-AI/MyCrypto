@@ -1,5 +1,5 @@
 import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import Header from '../../components/Header';
 import Popular from '../../components/Popular';
@@ -11,9 +11,30 @@ import BannerAnimated from '../../components/BannerAnimated';
 import SlidingBanner from '../../components/SlidingBanner';
 import CurrentValueTile from '../../components/CurrentValueTile';
 import {useDispatch, useSelector} from 'react-redux';
-
+import firestore from '@react-native-firebase/firestore';
+import {addUserData} from '../../redux/config/configSlice';
 const Home = ({navigation}: {navigation: any}) => {
+  const [userData, setUserData] = useState(null);
+  const {token} = useSelector(store => store.mainapi);
   const dispatch = useDispatch<any>();
+  const usersRef = firestore().collection('users').doc(token);
+
+  useEffect(() => {
+    usersRef
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          console.log('usersRef', documentSnapshot);
+          setUserData(documentSnapshot.data());
+          dispatch(addUserData(documentSnapshot.data()));
+        } else {
+          console.log('No such document!');
+        }
+      })
+      .catch(error => {
+        console.error('Error getting document:', error);
+      });
+  }, []);
 
   const navigateSearch = () => {
     navigation.navigate('Search');

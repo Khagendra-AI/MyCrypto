@@ -31,8 +31,9 @@ const LoginPage = ({navigation}: any) => {
         password,
       );
       const user = userCredential.user;
+      // console.log('JSON.stringify', user?.uid);
       dispatch(addLoginToken(user?.uid));
-      console.log('Logged in user:', user);
+      // console.log('Logged in user:', user);
       dispatch(getProductsAction())
         .unwrap()
         .then(() => {
@@ -41,8 +42,6 @@ const LoginPage = ({navigation}: any) => {
         .catch(({err}: any) => {
           console.error('Error fetching products', err);
         });
-
-
     } catch (error) {
       Alert.alert('Login Error', 'Something went wrong. Please try again.');
     }
