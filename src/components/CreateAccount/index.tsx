@@ -52,8 +52,8 @@ const CreateAccount = ({ navigation }: any) => {
         const usersRef = firebase.firestore().collection('users');
     
         usersRef.doc(userId).set({
-          name: {name},
-          email: {email},
+          name: name,
+          email: email,
         })
         .then(() => {
           console.log('User data successfully written!');

@@ -56,8 +56,8 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
   };
 
   const checkWatchlist = () => {
-    watchlistdata.map((item, index) => {
-      if (item.item.id === params.item.id || params.item.item?.id) {
+    (watchlistdata ?? [])?.map((item, index) => {
+      if (item.item.id === params?.item?.id || params?.item?.item?.id) {
         setstar(true);
         setstaricon(starbimage);
         setmainindex(index);

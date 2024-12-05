@@ -24,9 +24,10 @@ const Home = ({navigation}: {navigation: any}) => {
       .get()
       .then(documentSnapshot => {
         if (documentSnapshot.exists) {
-          console.log('usersRef', documentSnapshot);
+          // console.log('usersRef', documentSnapshot);
           setUserData(documentSnapshot.data());
           dispatch(addUserData(documentSnapshot.data()));
+          console.log(documentSnapshot.data(),"home snapshop")
         } else {
           console.log('No such document!');
         }

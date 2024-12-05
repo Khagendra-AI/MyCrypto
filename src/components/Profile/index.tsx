@@ -14,11 +14,13 @@ import {Icon} from '../../assets';
 import ProfileTile from '../ProfileTile';
 import {useDispatch, useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
-import {removeLoginToken} from '../../redux/config/configSlice';
-import firestore from '@react-native-firebase/firestore';
+import {removeLoginToken, removeUserData} from '../../redux/config/configSlice';
+import firestore, {firebase} from '@react-native-firebase/firestore';
 
 const Profile = ({navigation}: {navigation: any}) => {
-  const {userDetail} = useSelector(store => store.mainapi);
+  const {userDetail, token, watchlistdata} = useSelector(
+    store => store.mainapi,
+  );
 
   const dispatch = useDispatch<any>();
 
@@ -30,7 +32,25 @@ const Profile = ({navigation}: {navigation: any}) => {
       await auth().signOut();
       dispatch(removeLoginToken(''));
       Alert.alert('Success', 'You have logged out successfully!');
-      
+      // console.log(watchlistdata,"////fuiwgevcawqy")
+      const userId = token;
+      const usersRef = firebase.firestore().collection('users');
+      usersRef
+        .doc(userId)
+        .set(
+          {
+            favourites: watchlistdata || [] ,
+          },
+          {merge: true},
+        )
+        .then(() => {
+          console.log('Data saved');
+        })
+        .catch(error => {
+          console.error('Error saving data:', error);
+        });
+      dispatch(removeUserData(''));
+
       navigation.reset({
         index: 0,
         routes: [{name: 'LoginPage'}],
@@ -53,9 +73,9 @@ const Profile = ({navigation}: {navigation: any}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
-          <Text style={styles.nameText}>{userDetail.name.name}</Text>
+          <Text style={styles.nameText}>{userDetail?.name}</Text>
           <Text style={styles.numberText}>{}</Text>
-          <Text style={styles.mailText}>{userDetail.email.email}</Text>
+          <Text style={styles.mailText}>{userDetail?.email}</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>

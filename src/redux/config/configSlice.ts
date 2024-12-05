@@ -65,6 +65,15 @@ const configSlice = createSlice({
       const data = action.payload;
       console.log(data, '+++');
       state.userDetail = data;
+      // console.log(data.favourites,"favourites")
+      state.watchlistdata=data.favourites;
+    },
+    removeUserData: (state, action) => {
+      const data = action.payload;
+      // console.log(data, '+++');
+      state.userDetail = "";
+      // console.log(data.favourites,"favourites")
+      state.watchlistdata=[];
     },
     removeLoginToken: (state, action) => {
       console.log('chl gyaa how');
@@ -116,6 +125,7 @@ export const {
   removeWatchlist,
   addLoginToken,
   removeLoginToken,
+  removeUserData,
 } = configSlice.actions;
 
 export default configSlice.reducer;
