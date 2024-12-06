@@ -18,7 +18,7 @@ const Gainers = ({
   navigateMainCrypto: any;
 }) => {
   const dispatch = useDispatch();
-  const {products} = useSelector(store => store.mainapi);
+  const {products} = useSelector((store:any) => store.mainapi);
   const apiData = products?.data;
 
   // console.log('apiDataapiData', apiData);
@@ -35,7 +35,7 @@ const Gainers = ({
 
   const renderItem = ({item, index}: {item: any; index: any}) => (
     <Tile
-      index={index}
+      // index={index}
       navigateToCrypto={navigation}
       screenName={'MainCrypto'}
       navigateMainCrypto={{

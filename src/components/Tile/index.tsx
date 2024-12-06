@@ -30,7 +30,7 @@ const Tile = ({
   price: any;
   priceChange: any;
   screenName: string;
-  
+
   tileId: number | string;
   navigateToCrypto: () => void;
   item: any

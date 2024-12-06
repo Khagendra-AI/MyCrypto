@@ -15,15 +15,15 @@ const WatchList = ({
   navigateMainCrypto: any;
   navigation: any;
 }) => {
-  const {products} = useSelector(store => store.mainapi);
+  const {products} = useSelector((store:any) => store.mainapi);
 
   // console.log('productsproducts', products);
 
-  const renderItem = ({item, index}: {item: any}) => {
+  const renderItem = ({item,}: {item: any}) => {
     // console.log('item in the renderItem', item.id);
     return (
       <Tile
-        index={index}
+        // index={index}
         navigateToCrypto={navigation}
         screenName={'MainCrypto'}
         navigateMainCrypto={{

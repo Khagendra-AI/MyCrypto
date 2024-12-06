@@ -1,7 +1,8 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
+import styles from './styles';
 
-const Star = ({onStartPress, staricon}) => {
+const Star = ({onStartPress, staricon}:{onStartPress:any, staricon:any}) => {
   return (
     <TouchableOpacity style={styles.touchableStar} onPress={onStartPress}>
       <Image source={staricon} style={styles.starimage} />
@@ -11,10 +12,4 @@ const Star = ({onStartPress, staricon}) => {
 
 export default Star;
 
-const styles = StyleSheet.create({
-  starimage: {
-    // backgroundColor:'red',
-    height: 25,
-    width: 25,
-  },
-});
+

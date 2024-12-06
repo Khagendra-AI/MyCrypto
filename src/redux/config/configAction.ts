@@ -1,6 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 const getProductsApi = async () => {
+  
   // console.log('in getproducts appii')
   return axios.get('https://api.coincap.io/v2/assets');
 };

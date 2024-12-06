@@ -20,7 +20,7 @@ import { firebase } from '@react-native-firebase/firestore';
 const Settings = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
 
-  const {userDetail,token,watchlistdata,walletBalance} = useSelector(store => store.mainapi);
+  const {userDetail,token,watchlistdata,walletBalance} = useSelector((store:any) => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
@@ -83,12 +83,14 @@ const Settings = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.accountTiles}>
           <ProfileTile
+ navigateTo={navigateAddMoney}
             heading={'User Verification'}
             body={'Complete your KYC to buy, sell and withdraw'}
             photo={Icon.profileww}
             bcolor={'#6495ED'}
           />
           <ProfileTile
+           navigateTo={navigateAddMoney}
             heading={'Bank Details'}
             body={
               'This account is used to facilitate all your deposits and withdrawals'
@@ -99,7 +101,7 @@ const Settings = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.normalTiles}>
           <ProfileTile
-            
+             navigateTo={navigateAddMoney}
             heading={'History'}
             body={'View your past transactions'}
             photo={Icon.history}
@@ -113,6 +115,7 @@ const Settings = ({navigation}: {navigation: any}) => {
             bcolor={'#1e1e1f'}
           />
           <ProfileTile
+           navigateTo={navigateAddMoney}
             heading={'Reports'}
             body={'Download your account statement'}
             photo={Icon.reports}

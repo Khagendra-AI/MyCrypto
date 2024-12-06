@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import styles from './styles';
 
-const IndividualCryptoPortfolio = ({cryptoName,shortName}) => {
+const IndividualCryptoPortfolio = ({cryptoName,shortName}:{cryptoName:string,shortName:string}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.mainHeading}>Your {cryptoName} Portofilo</Text>

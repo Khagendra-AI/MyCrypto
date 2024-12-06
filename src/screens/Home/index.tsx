@@ -15,7 +15,7 @@ import firestore from '@react-native-firebase/firestore';
 import {addUserData} from '../../redux/config/configSlice';
 const Home = ({navigation}: {navigation: any}) => {
   const [userData, setUserData] = useState(null);
-  const {token} = useSelector(store => store.mainapi);
+  const {token} = useSelector((store:any) => store.mainapi);
   const dispatch = useDispatch<any>();
   const usersRef = firestore().collection('users').doc(token);
 

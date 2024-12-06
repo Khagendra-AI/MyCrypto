@@ -1,32 +1,38 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import Tile from '../Tile';
 import data from '../../../data';
 import styles from './styles';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
-
-
-const Popular = () => {
-  const {products} = useSelector(store => store.mainapi);
+const Popular = ({navigation}:{navigation:any}) => {
+  const {products} = useSelector((store: any) => store.mainapi);
 
   const chunkData = (data: any[], numColumns: number, numRows: number) => {
     const result = [];
-    for (let i = 0; i < data.length && result.length < numRows; i += numColumns) {
+    for (
+      let i = 0;
+      i < data.length && result.length < numRows;
+      i += numColumns
+    ) {
       result.push(data.slice(i, i + numColumns));
     }
     return result;
   };
 
- 
-  const rows = chunkData(data, 2, 5); 
+  const rows = chunkData(data, 2, 5);
 
-  const renderRow = ({ item }: { item: any[] }) => (
+  const renderRow = ({item}: {item: any[]}) => (
     <FlatList
       horizontal
       data={item}
-      renderItem={({ item }) => (
+      renderItem={({item}) => (
         <Tile
+          navigateToCrypto={navigation}
+          screenName={'MainCrypto'}
+          navigateMainCrypto={{}}
+          tileId={item.id ?? ''}
+          item={item}
           cryptoShortName={item.cryptoShortName}
           cryptoName={item.cryptoName}
           cryptoIcon={item.cryptoIcon}
@@ -34,7 +40,7 @@ const Popular = () => {
           priceChange={item.priceChange}
         />
       )}
-      keyExtractor={(item) => item.id}
+      keyExtractor={item => item.id}
       showsHorizontalScrollIndicator={false}
       scrollEnabled={false}
     />
@@ -44,14 +50,13 @@ const Popular = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Popular Crypto</Text>
 
-
       <FlatList
-        data={rows} 
-        renderItem={renderRow} 
+        data={rows}
+        renderItem={renderRow}
         keyExtractor={(item, index) => index.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
-        pagingEnabled={true} 
+        pagingEnabled={true}
         contentContainerStyle={styles.rowContainer}
       />
     </View>
@@ -59,5 +64,3 @@ const Popular = () => {
 };
 
 export default Popular;
-
-

@@ -25,7 +25,7 @@ const MarketMainFlatlist = ({
   navigateMainCrypto: any;
   navigation: any;
 }) => {
-  const {products, watchlistdata} = useSelector(store => store.mainapi);
+  const {products, watchlistdata} = useSelector((store:any) => store.mainapi);
   const apiData = products?.data;
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr > 0,

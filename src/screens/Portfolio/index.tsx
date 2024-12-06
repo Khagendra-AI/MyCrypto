@@ -18,7 +18,7 @@ import {useSelector} from 'react-redux';
 
 const Portfolio = ({navigation}: {navigation: any}) => {
   const {products, gainersData, walletBalance} = useSelector(
-    store => store.mainapi,
+    (store:any) => store.mainapi,
   );
   const renderdataitem = ({item, index}: {item: any; index: number}) => (
     <HorizontalTile

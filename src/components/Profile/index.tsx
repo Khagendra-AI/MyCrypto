@@ -19,7 +19,7 @@ import firestore, {firebase} from '@react-native-firebase/firestore';
 
 const Profile = ({navigation}: {navigation: any}) => {
   const {userDetail, token, watchlistdata,walletBalance} = useSelector(
-    store => store.mainapi,
+    (store:any) => store.mainapi,
   );
 
   const dispatch = useDispatch<any>();

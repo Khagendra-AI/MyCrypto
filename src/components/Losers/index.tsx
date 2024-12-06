@@ -17,7 +17,7 @@ const Losers = ({
   navigation:any;
 
 }) => {
-  const {products}= useSelector(store => store.mainapi);
+  const {products}= useSelector((store:any) => store.mainapi);
   const apiData = products?.data;
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr < 0,

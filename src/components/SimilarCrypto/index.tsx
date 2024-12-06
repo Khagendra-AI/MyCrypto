@@ -15,7 +15,7 @@ const SimilarCrypto = ({
   navigateMainCrypto: any;
   navigation:any;
 }) => {
-  const {products} = useSelector(store => store.mainapi);
+  const {products} = useSelector((store:any) => store.mainapi);
 
  
 

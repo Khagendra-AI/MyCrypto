@@ -23,14 +23,14 @@ const Search = ({
   navigateMainCrypto: any;
   navigation: any;
 }) => {
-  const {products} = useSelector(store => store.mainapi);
+  const {products} = useSelector((store:any) => store.mainapi);
   const [searchQuery, setSearchQuery] = useState('');
   const filteredCoins = () => {
     if (!(searchQuery.length > 2)) {
       return [];
     } else {
       return products.data?.filter(
-        coin =>
+        (coin:any) =>
           coin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           coin.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
       );
@@ -64,7 +64,7 @@ const Search = ({
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
-          <TouchableOpacity style={styles.touchableCancelImage} onPress={() => setSearchQuery('')}>>
+          <TouchableOpacity style={styles.touchableCancelImage} onPress={() => setSearchQuery('')}>
             <Image source={Icon.cancel} style={styles.cancelImage} />
           </TouchableOpacity>
         </View>

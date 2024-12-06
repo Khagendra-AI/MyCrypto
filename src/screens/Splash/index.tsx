@@ -15,7 +15,7 @@ import {getProductsAction} from '../../redux/config/configAction';
 
 const Splash = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
-  const {watchlistdata, token} = useSelector(store => store.mainapi);
+  const {watchlistdata, token} = useSelector((store:any) => store.mainapi);
   useEffect(() => {
     const timer = setTimeout(async () => {
       if (token=="") {
