@@ -14,13 +14,13 @@ import {Icon} from '../../assets';
 import ProfileTile from '../../components/ProfileTile';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '@react-native-firebase/auth';
-import { removeLoginToken, removeUserData } from '../../redux/config/configSlice';
+import { removeLoginToken, removeUserData, setBalanceZero } from '../../redux/config/configSlice';
 import { firebase } from '@react-native-firebase/firestore';
 
 const Settings = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
 
-  const {userDetail,token,watchlistdata} = useSelector(store => store.mainapi);
+  const {userDetail,token,watchlistdata,walletBalance} = useSelector(store => store.mainapi);
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
@@ -36,6 +36,7 @@ const Settings = ({navigation}: {navigation: any}) => {
         .set(
           {
             favourites: watchlistdata || [] ,
+            walletBalance:walletBalance
           },
           {merge: true},
         )
@@ -46,6 +47,7 @@ const Settings = ({navigation}: {navigation: any}) => {
           console.error('Error saving data:', error);
         });
       dispatch(removeUserData(''));
+      dispatch(setBalanceZero(""));
 
       navigation.reset({
         index: 0,   

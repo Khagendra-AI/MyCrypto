@@ -36,6 +36,9 @@ const configSlice = createSlice({
       state.walletBalance += Number(data);
       //console.log(state.walletBalance, 'walletbalance');
     },
+    setBalanceZero:(state, action) => {
+      state.walletBalance=0;
+    },
     addWatchlist: (state, action) => {
       const data = action.payload;
 
@@ -67,6 +70,7 @@ const configSlice = createSlice({
       state.userDetail = data;
       // console.log(data.favourites,"favourites")
       state.watchlistdata=data.favourites;
+      state.walletBalance=data.walletBalance || 0;
     },
     removeUserData: (state, action) => {
       const data = action.payload;
@@ -126,6 +130,7 @@ export const {
   addLoginToken,
   removeLoginToken,
   removeUserData,
+  setBalanceZero,
 } = configSlice.actions;
 
 export default configSlice.reducer;
