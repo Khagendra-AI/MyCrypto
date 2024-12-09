@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     height: 35,
     width: 35,
   },
+  touchableBack:{},
   starimage: {
     // backgroundColor:'red',
     height: 25,

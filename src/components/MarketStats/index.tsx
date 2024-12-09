@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import styles from './styles'
 
-const MarketStats = ({mRank,mCap,supply}:{mRank:number,mCap:number,supply:number}) => {
+const MarketStats = ({mRank,mCap,supply}:{mRank:any,mCap:any,supply:any}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.mainHeading}>Market Stats</Text>

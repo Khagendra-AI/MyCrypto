@@ -16,13 +16,14 @@ import {getProductsAction} from '../../redux/config/configAction';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from '../../assets';
 import {styles} from './styles';
-import {addLoginToken} from '../../redux/config/configSlice';
+import {addLoginToken, addUserData} from '../../redux/config/configSlice';
 
 const LoginPage = ({navigation}: any) => {
   const dispatch = useDispatch<any>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
+
 
   const handleLogin = async () => {
     try {
@@ -31,9 +32,25 @@ const LoginPage = ({navigation}: any) => {
         password,
       );
       const user = userCredential.user;
-      // console.log('JSON.stringify', user?.uid);
+
       dispatch(addLoginToken(user?.uid));
-      // console.log('Logged in user:', user);
+      const usersRef = firestore().collection('users').doc(user?.uid);
+
+      usersRef
+      .get()
+      .then(documentSnapshot => {
+        if (documentSnapshot.exists) {
+          // console.log('usersRef', documentSnapshot);
+          // setUserData(documentSnapshot.data());
+          dispatch(addUserData(documentSnapshot.data()));
+          console.log(documentSnapshot.data(),"home snapshop")
+        } else {
+          console.log('No such document!');
+        }
+      })
+      .catch(error => {
+        console.error('Error getting document:', error);
+      });
       dispatch(getProductsAction())
         .unwrap()
         .then(() => {

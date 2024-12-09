@@ -16,8 +16,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import Chart from '../../components/Chart';
 import {Icon} from '../../assets';
 import {addWatchlist, removeWatchlist} from '../../redux/config/configSlice';
-import starimage from '../../assets/icons/star.png';
-import starbimage from '../../assets/icons/starb.png';
+// import starimage from '../../assets/icons/star.png';
+// import starbimage from '../../assets/icons/starb.png';
 import Star from '../../components/Star';
 import {SafeAreaView} from 'react-native-safe-area-context';
 /**
@@ -27,16 +27,37 @@ import {SafeAreaView} from 'react-native-safe-area-context';
  */
 
 const MainCrypto = ({navigation}: {navigation: any}) => {
-  const params = useRoute()?.params;
+  const params = useRoute()?.params as {
+    item: {
+      id:any
+      rank:any
+      symbol: any;
+      changePercent24Hr: any;
+      marketCapUsd: any;
+      priceUsd: any;
+      name: any;
+      supply: any;
+      item: {
+        // item:any
+        id:any
+        supply: any;
+        symbol: any;
+        rank: any;
+        priceUsd: any;
+        marketCapUsd: any;
+        changePercent24Hr: any;
+      };
+    };
+  };
   const dispatch = useDispatch();
-  const {watchlistdata} = useSelector(store => store.mainapi);
+  const {watchlistdata} = useSelector((store:any) => store.mainapi);
   const [star, setstar] = useState(false);
-  const [staricon, setstaricon] = useState(starimage);
+  const [staricon, setstaricon] = useState(Icon.star);
   const [mainindex, setmainindex] = useState(-1);
   const navigateWithIndex = (index: any) => {
     navigation.navigate('Market', {index});
   };
-  const croreFunction = number => {
+  const croreFunction = (number:number) => {
     let crore = number / 10000000;
     return crore.toFixed(2);
   };
@@ -46,20 +67,20 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
   const onStartPress = () => {
     if (star) {
       dispatch(removeWatchlist(mainindex));
-      setstaricon(starimage);
+      setstaricon(Icon.star);
       setstar(false);
     } else {
       dispatch(addWatchlist({...params, isStarred: true}));
-      setstaricon(starbimage);
+      setstaricon(Icon.starb);
       setstar(true);
     }
   };
 
   const checkWatchlist = () => {
-    (watchlistdata ?? [])?.map((item, index) => {
+    (watchlistdata ?? [])?.map((item:any, index:any) => {
       if (item.item.id === params?.item?.id || params?.item?.item?.id) {
         setstar(true);
-        setstaricon(starbimage);
+        setstaricon(Icon.starb);
         setmainindex(index);
       }
     });

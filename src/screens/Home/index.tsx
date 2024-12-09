@@ -19,23 +19,23 @@ const Home = ({navigation}: {navigation: any}) => {
   const dispatch = useDispatch<any>();
   const usersRef = firestore().collection('users').doc(token);
 
-  useEffect(() => {
-    usersRef
-      .get()
-      .then(documentSnapshot => {
-        if (documentSnapshot.exists) {
-          // console.log('usersRef', documentSnapshot);
-          setUserData(documentSnapshot.data());
-          dispatch(addUserData(documentSnapshot.data()));
-          console.log(documentSnapshot.data(),"home snapshop")
-        } else {
-          console.log('No such document!');
-        }
-      })
-      .catch(error => {
-        console.error('Error getting document:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   usersRef
+  //     .get()
+  //     .then(documentSnapshot => {
+  //       if (documentSnapshot.exists) {
+  //         // console.log('usersRef', documentSnapshot);
+  //         setUserData(documentSnapshot.data());
+  //         dispatch(addUserData(documentSnapshot.data()));
+  //         console.log(documentSnapshot.data(),"home snapshop")
+  //       } else {
+  //         console.log('No such document!');
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error('Error getting document:', error);
+  //     });
+  // }, []);
 
   const navigateSearch = () => {
     navigation.navigate('Search');
