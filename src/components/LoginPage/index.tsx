@@ -8,6 +8,7 @@ import {
   Alert,
   Image,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -23,9 +24,11 @@ const LoginPage = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
+  const [loading,setloading]=useState(false)
 
 
   const handleLogin = async () => {
+    setloading(true)
     try {
       const userCredential = await auth().signInWithEmailAndPassword(
         email,
@@ -39,7 +42,9 @@ const LoginPage = ({navigation}: any) => {
       usersRef
       .get()
       .then(documentSnapshot => {
+        setloading(false)
         if (documentSnapshot.exists) {
+
           // console.log('usersRef', documentSnapshot);
           // setUserData(documentSnapshot.data());
           dispatch(addUserData(documentSnapshot.data()));
@@ -49,6 +54,8 @@ const LoginPage = ({navigation}: any) => {
         }
       })
       .catch(error => {
+        setloading(false)
+        //false
         console.error('Error getting document:', error);
       });
       dispatch(getProductsAction())
@@ -71,7 +78,11 @@ const LoginPage = ({navigation}: any) => {
   };
 
   return (
+    
     <View style={styles.container}>
+    
+      { loading ? <ActivityIndicator size={'large'}/> :
+      <>
       <View style={styles.header}>
         <Text style={styles.title}>Login</Text>
       </View>
@@ -124,6 +135,8 @@ const LoginPage = ({navigation}: any) => {
           <Text style={styles.linkText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
+      </>
+}
     </View>
   );
 };
