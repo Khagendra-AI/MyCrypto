@@ -24,6 +24,15 @@ const Settings = ({navigation}: {navigation: any}) => {
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
   };
+  const navigateBankDetails = () => {
+    navigation.navigate('BankDetails');
+  };
+  const navigateKYC = () => {
+    navigation.navigate('KYC');
+  };
+  const navigateOrders= () => {
+    navigation.navigate('Orders');
+  };
   const handleLogout = async () => {
     try {
       await auth().signOut();
@@ -71,9 +80,9 @@ const Settings = ({navigation}: {navigation: any}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
-          <Text style={styles.nameText}>{userDetail.name}</Text>
-          <Text style={styles.numberText}>{}</Text>
-          <Text style={styles.mailText}>{userDetail.email}</Text>
+          <Text style={styles.nameText}>{userDetail?.name}</Text>
+          <Text style={styles.numberText}>{userDetail?.phone}</Text>
+          <Text style={styles.mailText}>{userDetail?.email}</Text>
         </View>
         <View style={styles.accountView}>
           <Text style={styles.accountText}>Account Information</Text>
@@ -83,14 +92,14 @@ const Settings = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.accountTiles}>
           <ProfileTile
- navigateTo={navigateAddMoney}
+ navigateTo={navigateKYC}
             heading={'User Verification'}
             body={'Complete your KYC to buy, sell and withdraw'}
             photo={Icon.profileww}
             bcolor={'#6495ED'}
           />
           <ProfileTile
-           navigateTo={navigateAddMoney}
+           navigateTo={navigateBankDetails}
             heading={'Bank Details'}
             body={
               'This account is used to facilitate all your deposits and withdrawals'
@@ -101,7 +110,7 @@ const Settings = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.normalTiles}>
           <ProfileTile
-             navigateTo={navigateAddMoney}
+             navigateTo={navigateOrders}
             heading={'History'}
             body={'View your past transactions'}
             photo={Icon.history}

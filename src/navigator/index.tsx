@@ -16,6 +16,9 @@ import LoginPage from '../components/LoginPage';
 import CreateAccount from '../components/CreateAccount';
 import ForgotPassword from '../screens/ForgotPassword';
 import Search from '../screens/Search';
+import BankDetails from '../screens/BankDetails';
+import KYC from '../screens/KYC';
+import Orders from '../screens/Orders';
 
 const Stack = createNativeStackNavigator();
 
@@ -77,6 +80,21 @@ export default function RootNavigation() {
         <Stack.Screen
           name="Profile"
           component={Profile}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="KYC"
+          component={KYC}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Orders"
+          component={Orders}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="BankDetails"
+          component={BankDetails}
           options={{headerShown: false}}
         />
         <Stack.Screen

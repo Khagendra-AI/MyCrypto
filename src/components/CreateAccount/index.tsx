@@ -16,17 +16,19 @@ const CreateAccount = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(true);
 
   useEffect(() => {
     validateFields();
-  }, [email, password, name]);
+  }, [email, password, name, phone]);
 
   const validateFields = () => {
     let emailValid = validateEmail(email);
     let passwordValid = password.length >= 6;
     let nameValid = name.trim().length > 0;   
+    let phoneValid = validatePhone(phone);
 
     setIsButtonDisabled(!(emailValid && passwordValid && nameValid));
   };
@@ -35,6 +37,10 @@ const CreateAccount = ({ navigation }: any) => {
     setShowPassword(!showPassword);
   };
 
+  const validatePhone = (phone: string) => {
+    const phoneRegex = /^[0-9]{10}$/; 
+    return phoneRegex.test(phone);
+  };
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -54,6 +60,7 @@ const CreateAccount = ({ navigation }: any) => {
         usersRef.doc(userId).set({
           name: name,
           email: email,
+          phone: phone, 
         })
         .then(() => {
           console.log('User data successfully written!');
@@ -128,7 +135,25 @@ const CreateAccount = ({ navigation }: any) => {
       {email !== '' && !validateEmail(email) ? (
         <Text style={styles.errorText}>Invalid email format.</Text>
       ) : null}
-
+      <View
+        style={[
+          styles.inputContainer,
+          phone !== '' && !validatePhone(phone)
+            ? { borderColor: 'red' }
+            : { borderColor: '#2980B9' },
+        ]}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Phone Number"
+          placeholderTextColor={"#bbb"}
+          keyboardType="phone-pad"
+          value={phone}
+          onChangeText={text => setPhone(text)}
+        />
+      </View>
+      {phone !== '' && !validatePhone(phone) ? (
+        <Text style={styles.errorText}>Phone number must be 10 digits.</Text>
+      ) : null}
 
       <View
         style={[

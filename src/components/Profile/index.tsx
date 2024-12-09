@@ -17,6 +17,7 @@ import auth from '@react-native-firebase/auth';
 import {removeLoginToken, removeUserData, setBalanceZero} from '../../redux/config/configSlice';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 
+
 const Profile = ({navigation}: {navigation: any}) => {
   const {userDetail, token, watchlistdata,walletBalance} = useSelector(
     (store:any) => store.mainapi,
@@ -26,6 +27,15 @@ const Profile = ({navigation}: {navigation: any}) => {
 
   const navigateAddMoney = () => {
     navigation.navigate('AddMoney');
+  };
+  const navigateBankDetails = () => {
+    navigation.navigate('BankDetails');
+  };
+  const navigateKYC = () => {
+    navigation.navigate('KYC');
+  };
+  const navigateOrders= () => {
+    navigation.navigate('Orders');
   };
   const handleLogout = async () => {
     try {
@@ -76,7 +86,7 @@ const Profile = ({navigation}: {navigation: any}) => {
         <View style={styles.infoView}>
           <Image source={Icon.profileww} />
           <Text style={styles.nameText}>{userDetail?.name}</Text>
-          <Text style={styles.numberText}>{}</Text>
+          <Text style={styles.numberText}>{userDetail?.phone}</Text>
           <Text style={styles.mailText}>{userDetail?.email}</Text>
         </View>
         <View style={styles.accountView}>
@@ -87,14 +97,14 @@ const Profile = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.accountTiles}>
           <ProfileTile
-            navigateTo={navigateAddMoney}
+            navigateTo={navigateKYC}
             heading={'User Verification'}
             body={'Complete your KYC to buy, sell and withdraw'}
             photo={Icon.profileww}
             bcolor={'#6495ED'}
           />
           <ProfileTile
-            navigateTo={navigateAddMoney}
+            navigateTo={navigateBankDetails}
             heading={'Bank Details'}
             body={
               'This account is used to facilitate all your deposits and withdrawals'
@@ -105,7 +115,7 @@ const Profile = ({navigation}: {navigation: any}) => {
         </View>
         <View style={styles.normalTiles}>
           <ProfileTile
-            navigateTo={navigateAddMoney}
+            navigateTo={navigateOrders}
             heading={'History'}
             body={'View your past transactions'}
             photo={Icon.history}
