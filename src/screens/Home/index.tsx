@@ -81,7 +81,8 @@ const Home = ({navigation}: {navigation: any}) => {
         // navigateMainCrypto={{onPress: navigateMainCrypto, tileId: '', index: 0}}
       />
       <BannerAnimated />
-      <Popular />
+      <Popular
+       />
       <Gainers
         navigation={navigation}
         // navigateMainCrypto={{onPress: navigateMainCrypto, tileId: '', index: 0}}

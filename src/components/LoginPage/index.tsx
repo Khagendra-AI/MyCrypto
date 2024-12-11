@@ -61,12 +61,16 @@ const LoginPage = ({navigation}: any) => {
       dispatch(getProductsAction())
         .unwrap()
         .then(() => {
-          navigation.replace('BottomNav');
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'BottomNav'}],
+          });
         })
         .catch(({err}: any) => {
           console.error('Error fetching products', err);
         });
     } catch (error) {
+      setloading(false)
       Alert.alert('Login Error', 'Something went wrong. Please try again.');
     }
   };

@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     marginHorizontal:5,
 
   },
+  cryptoText:{
+    color: 'white', fontWeight: '600', margin: 5, fontSize: 19
+  },
   image:{
     borderRadius:10,
     resizeMode:'cover',

@@ -2,6 +2,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  Linking,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -22,14 +23,15 @@ const SlidingBanner = () => {
     {id: '6', source: Images.slidingBanner2},
   ];
   const renderItem = ({item}: {item: any}) => (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={()=>{const url = 'https://www.dentons.com/en/insights/podcasts/crypto-bytes-podcast-series';
+      Linking.openURL(url).catch(err => console.error("Failed to open URL:", err))}}>
       <Image source={item.source} style={styles.image} />
     </TouchableOpacity>
   );
   return (
     <View style={styles.container}>
       <Text
-        style={{color: 'white', fontWeight: '600', margin: 5, fontSize: 19}}>
+        style={styles.cryptoText}>
         Crypto Bytes
       </Text>
       <FlatList
