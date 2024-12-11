@@ -51,14 +51,14 @@ const Losers = ({
     <View style={styles.container}>
       <View style={styles.subcontainer}>
         <Text
-          style={{color: 'white', fontWeight: '600', margin: 5, fontSize: 19}}>
+          style={styles.losersText}>
           Top Losers
         </Text>
         <TouchableOpacity
           style={styles.touchableViewall}
           onPress={() => navigateLosers(2)}>
           <Text
-            style={{color: '#00FFFF', fontWeight: '600', margin: 5, fontSize: 14}}>
+            style={styles.viewText}>
             View all
           </Text>
         </TouchableOpacity>

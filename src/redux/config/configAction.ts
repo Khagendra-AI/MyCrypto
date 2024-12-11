@@ -12,7 +12,7 @@ export const getProductsAction = createAsyncThunk(
     try {
       // console.log('in getproducts try')
       // console.log('getProductsAction', args, thunkApi);
-      const response = await getProductsApi();
+      const response: any = await getProductsApi();
       //  console.log('getProductsApi', response);
       if (response) {
         // console.log('in if','///////////////')

@@ -27,10 +27,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
  */
 
 const MainCrypto = ({navigation}: {navigation: any}) => {
-  const params = useRoute()?.params as {
+  const params: any = useRoute()?.params as {
     item: {
-      id:any
-      rank:any
+      id: any;
+      rank: any;
       symbol: any;
       changePercent24Hr: any;
       marketCapUsd: any;
@@ -39,7 +39,7 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
       supply: any;
       item: {
         // item:any
-        id:any
+        id: any;
         supply: any;
         symbol: any;
         rank: any;
@@ -50,14 +50,14 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
     };
   };
   const dispatch = useDispatch();
-  const {watchlistdata} = useSelector((store:any) => store.mainapi);
+  const {watchlistdata} = useSelector((store: any) => store.mainapi);
   const [star, setstar] = useState(false);
   const [staricon, setstaricon] = useState(Icon.star);
   const [mainindex, setmainindex] = useState(-1);
   const navigateWithIndex = (index: any) => {
     navigation.navigate('Market', {index});
   };
-  const croreFunction = (number:number) => {
+  const croreFunction = (number: number) => {
     let crore = number / 10000000;
     return crore.toFixed(2);
   };
@@ -77,7 +77,7 @@ const MainCrypto = ({navigation}: {navigation: any}) => {
   };
 
   const checkWatchlist = () => {
-    (watchlistdata ?? [])?.map((item:any, index:any) => {
+    (watchlistdata ?? [])?.map((item: any, index: any) => {
       if (item.item.id === params?.item?.id || params?.item?.item?.id) {
         setstar(true);
         setstaricon(Icon.starb);

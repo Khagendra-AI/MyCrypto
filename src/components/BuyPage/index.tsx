@@ -13,9 +13,30 @@ import {Icon} from '../../assets';
 import { useRoute } from '@react-navigation/native';
 
 const BuyPage = ({navigation}: {navigation: any}) => {
-  const params = useRoute()?.params;
+  const params = useRoute()?.params as {
+    item: {
+      id:any
+      rank:any
+      symbol: any;
+      changePercent24Hr: any;
+      marketCapUsd: any;
+      priceUsd: any;
+      name: any;
+      supply: any;
+      item: {
+        // item:any
+        id:any
+        supply: any;
+        symbol: any;
+        rank: any;
+        priceUsd: any;
+        marketCapUsd: any;
+        changePercent24Hr: any;
+      };
+    };
+  };;
   const [amount, setamount] = useState('');
-  const onamountchange = e => {
+  const onamountchange = (e:any) => {
     setamount(e);
   };
   const onBuyPress = () => {};

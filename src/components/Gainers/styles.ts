@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,16 +6,25 @@ const styles = StyleSheet.create({
     marginVertical: 9,
     backgroundColor: 'black',
   },
-  subcontainer:{
-    alignItems:'center',
-    flexDirection:'row',
-    justifyContent:'space-between'
+  topGainersText: {
+    color: 'white',
+    fontWeight: '600',
+    margin: 5,
+    fontSize: 19,
   },
-  touchableViewall:{
-    padding:2,
-    paddingHorizontal:5,
-    borderRadius:50,
-    backgroundColor:'#1e1e1f'
+  viewAllText:{
+    color: '#00FFFF', fontWeight: '600', margin: 5, fontSize: 14
+  },
+  subcontainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  touchableViewall: {
+    padding: 2,
+    paddingHorizontal: 5,
+    borderRadius: 50,
+    backgroundColor: '#1e1e1f',
   },
 });
-export default styles
+export default styles;

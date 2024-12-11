@@ -39,13 +39,13 @@ const configSlice = createSlice({
     setBalanceZero:(state, action) => {
       state.walletBalance=0;
     },
-    addWatchlist: (state, action) => {
-      const data = action.payload;
+    addWatchlist: (state: any, action) => {
+      const data: any = action.payload;
 
       state.watchlistdata.push(data);
       console.log(state.watchlistdata, 'data addded');
     },
-    removeWatchlist: (state, action) => {
+    removeWatchlist: (state:any, action) => {
       const data = action.payload;
 
       state.watchlistdata.pop(data);

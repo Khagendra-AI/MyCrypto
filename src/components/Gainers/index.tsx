@@ -6,7 +6,7 @@ import Tile from '../Tile';
 import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {addGainers} from '../../redux/config/configSlice';
-import { Icon } from '../../assets';
+import {Icon} from '../../assets';
 
 const Gainers = ({
   navigateGainers,
@@ -18,10 +18,8 @@ const Gainers = ({
   navigateMainCrypto: any;
 }) => {
   const dispatch = useDispatch();
-  const {products} = useSelector((store:any) => store.mainapi);
+  const {products} = useSelector((store: any) => store.mainapi);
   const apiData = products?.data;
-
-  // console.log('apiDataapiData', apiData);
 
   const positiveGainers = apiData?.filter(
     (item: any) => item.changePercent24Hr > 0,
@@ -29,13 +27,9 @@ const Gainers = ({
   const sortedGainers = positiveGainers?.sort(
     (a: any, b: any) => b?.changePercent24Hr - a?.changePercent24Hr,
   );
-  // useEffect(() => {
-  //  dispatch(addGainers(sortedGainers))
-  // }, []);
 
   const renderItem = ({item, index}: {item: any; index: any}) => (
     <Tile
-      // index={index}
       navigateToCrypto={navigation}
       screenName={'MainCrypto'}
       navigateMainCrypto={{
@@ -44,7 +38,6 @@ const Gainers = ({
       }}
       tileId={item.id ?? ''}
       item={item}
-      // navigateMainCrypto={navigateMainCrypto}
       cryptoShortName={item.symbol}
       cryptoName={item.name}
       cryptoIcon={Icon.crypto}
@@ -55,17 +48,11 @@ const Gainers = ({
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>
-        <Text
-          style={{color: 'white', fontWeight: '600', margin: 5, fontSize: 19}}>
-          Top Gainers
-        </Text>
+        <Text style={styles.topGainersText}>Top Gainers</Text>
         <TouchableOpacity
           style={styles.touchableViewall}
           onPress={() => navigateGainers(1)}>
-          <Text
-            style={{color: '#00FFFF', fontWeight: '600', margin: 5, fontSize: 14}}>
-            View all
-          </Text>
+          <Text style={styles.viewAllText}>View all</Text>
         </TouchableOpacity>
       </View>
 

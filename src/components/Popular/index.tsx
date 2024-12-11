@@ -5,7 +5,7 @@ import data from '../../../data';
 import styles from './styles';
 import {useSelector} from 'react-redux';
 
-const Popular = ({navigation}:{navigation:any}) => {
+const Popular = ({navigation}: {navigation?: any}) => {
   const {products} = useSelector((store: any) => store.mainapi);
 
   const chunkData = (data: any[], numColumns: number, numRows: number) => {

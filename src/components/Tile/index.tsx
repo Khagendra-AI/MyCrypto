@@ -19,9 +19,9 @@ const Tile = ({
   tileId,
   priceChange,
   screenName,
-  
+
   navigateToCrypto,
-  item
+  item,
 }: {
   navigateMainCrypto: any;
   cryptoShortName: any;
@@ -32,8 +32,8 @@ const Tile = ({
   screenName: string;
 
   tileId: number | string;
-  navigateToCrypto: () => void;
-  item: any
+  navigateToCrypto: any;
+  item: any;
 }) => {
   return (
     <View style={{backgroundColor: 'black'}}>
@@ -43,8 +43,8 @@ const Tile = ({
         onPress={() =>
           navigateToCrypto?.navigate?.(screenName, {
             tileId: tileId ?? '',
-            
-            item
+
+            item,
           })
         }
         activeOpacity={1}>
