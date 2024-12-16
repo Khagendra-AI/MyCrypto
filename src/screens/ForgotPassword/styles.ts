@@ -1,23 +1,22 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'black',  
+    backgroundColor: 'black',
   },
   header: {
-    marginBottom:'10%',
-    alignItems:'center',
+    marginBottom: '10%',
+    alignItems: 'center',
   },
   title: {
-    color: 'white',  
+    color: 'white',
     fontSize: 40,
-
   },
   inputContainer: {
-    marginVertical:'2%',
-    backgroundColor: '#34495E',   
+    marginVertical: '2%',
+    backgroundColor: '#34495E',
     borderRadius: 15,
     padding: 3,
 
@@ -26,14 +25,12 @@ const styles = StyleSheet.create({
     height: 50,
   },
   textInput: {
-    
-    color: '#FFFFFF',   
+    color: '#FFFFFF',
     fontSize: 16,
-    padding: 9,
-
+    padding: 13,
   },
   button: {
-    backgroundColor: '#2980B9',  
+    backgroundColor: '#2980B9',
     borderRadius: 10,
     height: 50,
     alignItems: 'center',
@@ -42,20 +39,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   buttonText: {
-    color: '#FFFFFF',   
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: 'bold',
   },
   forgotText: {
-    color: '#2980B9',   
+    color: '#2980B9',
     textAlign: 'center',
     padding: 5,
     fontSize: 14,
-
   },
   createStyle: {
     margin: 18,
-    borderColor: '#2980B9',   
+    borderColor: '#2980B9',
     borderWidth: 1,
     borderRadius: 10,
     padding: 10,

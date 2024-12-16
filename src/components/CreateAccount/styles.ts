@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
     height: 50,
   },
   textInput: {
+    paddingRight:'8%',
     color: '#FFFFFF',  
     fontSize: 16,
-    padding: 9,
+    padding: 13,
 
   },
   button: {

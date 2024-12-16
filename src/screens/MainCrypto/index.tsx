@@ -1,7 +1,6 @@
 import {
   Image,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -10,14 +9,11 @@ import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import IndividualCryptoPortfolio from '../../components/IndividualCryptoPortfolio';
 import MarketStats from '../../components/MarketStats';
-import SimilarCrypto from '../../components/SimilarCrypto';
 import {useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import Chart from '../../components/Chart';
 import {Icon} from '../../assets';
 import {addWatchlist, removeWatchlist} from '../../redux/config/configSlice';
-// import starimage from '../../assets/icons/star.png';
-// import starbimage from '../../assets/icons/starb.png';
 import Star from '../../components/Star';
 import {SafeAreaView} from 'react-native-safe-area-context';
 /**

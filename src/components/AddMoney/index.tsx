@@ -45,6 +45,7 @@ const AddMoney = ({navigation}: {navigation: any}) => {
       <View style={styles.enterAmountView}>
         <Text style={styles.enterAmountText}>Enter Amount</Text>
         <TextInput
+        
           onChangeText={onmoneychange}
           value={money}
           defaultValue="50"

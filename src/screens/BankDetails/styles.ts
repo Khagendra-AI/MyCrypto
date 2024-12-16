@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     top: '50%',
-    
   },
   lastUpdatedContainer: {
     marginTop: 20,
