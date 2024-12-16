@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
   addText:{
     fontSize:20,
     color:'white',
-    padding:30,
+    paddingVertical:30,
+    marginRight:10,
   },
   backimage:{
     height:30,

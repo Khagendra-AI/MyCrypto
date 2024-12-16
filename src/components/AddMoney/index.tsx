@@ -22,10 +22,10 @@ const AddMoney = ({navigation}: {navigation: any}) => {
     dispatch(addBalance(money));
   };
   const dispatch = useDispatch();
-  const on10press = () => {};
-  const on50press = () => {};
-  const on100press = () => {};
-  const on500press = () => {};
+  const on10press = () => {setmoney("10")};
+  const on50press = () => {setmoney("50")};
+  const on100press = () => {setmoney("100")};
+  const on500press = () => {setmoney("500")};
   const {products, gainersData, walletBalance} = useSelector(
     (store: any) => store.mainapi,
   );
@@ -45,7 +45,6 @@ const AddMoney = ({navigation}: {navigation: any}) => {
       <View style={styles.enterAmountView}>
         <Text style={styles.enterAmountText}>Enter Amount</Text>
         <TextInput
-        
           onChangeText={onmoneychange}
           value={money}
           defaultValue="50"
@@ -56,16 +55,16 @@ const AddMoney = ({navigation}: {navigation: any}) => {
         <Text style={styles.enterAmountText}>Min: $10 | Max: $5000</Text>
         <View style={styles.directAddView}>
           <Text style={styles.directAddText} onPress={on10press}>
-            +10
+            10
           </Text>
           <Text style={styles.directAddText} onPress={on50press}>
-            +50
+            50
           </Text>
           <Text style={styles.directAddText} onPress={on100press}>
-            +100
+            100
           </Text>
           <Text style={styles.directAddText} onPress={on500press}>
-            +500
+            500
           </Text>
         </View>
       </View>
